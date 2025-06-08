@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".base.OnBoardingActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageOnBoard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splite" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageAppLogo"
+        android:layout_width="@dimen/default_image_size_74dp"
+        android:layout_height="@dimen/default_image_size_74dp"
+        android:padding="@dimen/padding_4"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_48"
+        android:layout_marginVertical="@dimen/margin_8"
+        android:maxLines="2"
+        android:text="@string/str_welcome_to_our_store"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_36"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/imageAppLogo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginVertical="@dimen/margin_32"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/str_on_board_description"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_36"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/textWelcome" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonGetStarted"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_button"
+        android:layout_marginHorizontal="@dimen/margin_48"
+        android:background="@color/color_primary"
+        android:textColor="@color/white"
+        android:text="@string/str_get_started"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="mrkinfotech.Grocio.login.LoginFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_login"/>
+
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="mrkinfotech.Grocio.home.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second"/>
+
+</navigation>
