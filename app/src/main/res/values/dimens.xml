@@ -57,6 +57,7 @@
 
     <dimen name="player_icon_in_list">64dp</dimen>
 
+
     <dimen name="default_view_pager_image_size_212">212dp</dimen>
     <dimen name="default_view_pager_image_size">188dp</dimen>
     <dimen name="default_image_size">144dp</dimen>
