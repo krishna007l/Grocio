@@ -15,4 +15,6 @@
     <string name="str_enter_your_email_password">enter password</string>
     <string name="str_email">Gmail</string>
     <string name="str_password">Password</string>
+    <string name="str_Delevery">Delevery IN </string>
+    <string name="str_minutes">10 minutes</string>
 </resources>

@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/orange"
     android:padding="@dimen/padding_8"
     tools:context=".login.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageLogo"
-        android:layout_width="@dimen/default_image_size_54dp"
-        android:layout_height="@dimen/default_image_size_54dp"
+        android:layout_width="@dimen/default_image_size_medium"
+        android:layout_height="@dimen/default_image_size_74dp"
         android:layout_marginTop="@dimen/margin_56"
-        android:src="@drawable/icon"
+        android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textTitleLogin"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_48"
         android:maxLines="2"
@@ -28,11 +28,9 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="@dimen/font_36"
-        android:layout_marginLeft="25dp"
-        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
-
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textTitleEmail"
@@ -40,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_48"
         android:maxLines="2"
+        android:textColor="@color/black"
         android:text="@string/str_email"
         android:textAlignment="textStart"
         android:layout_marginLeft="35dp"
@@ -48,12 +47,14 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextEmail"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         app:layout_constraintTop_toBottomOf="@+id/textTitleEmail" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -71,10 +72,12 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextPassword"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         android:inputType="numberPassword"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textTitlePassword" />
@@ -85,13 +88,18 @@
         android:layout_marginHorizontal="@dimen/margin_48"
         android:background="@color/color_primary"
         android:textColor="@color/white"
+        android:layout_marginTop="@dimen/default_edit_text_height"
         android:text="@string/str_login"
+
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don’t have an account ?"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/loginbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
