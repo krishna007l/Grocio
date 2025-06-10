@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_button"
         android:layout_marginHorizontal="75dp"
-        android:background="@color/color_primary"
+        android:background="@drawable/curve2"
         android:text="@string/str_get_started"
         android:textSize="@dimen/font_24"
         android:textColor="@color/white"
