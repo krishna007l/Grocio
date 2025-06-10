@@ -19,4 +19,6 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
     }
+
+
 }
