@@ -2,6 +2,7 @@ package mrkinfotech.Grocio.login
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -32,5 +33,8 @@ class LoginActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_login_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+    fun onMyButtonClick(view: View){
+        setContentView(R.layout.activity_signin)
     }
 }

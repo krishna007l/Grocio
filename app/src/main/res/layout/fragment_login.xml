@@ -78,7 +78,6 @@
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:inputType="numberPassword"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/textTitlePassword" />
     <androidx.appcompat.widget.AppCompatButton
@@ -93,13 +92,35 @@
 
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
     <TextView
+        android:id="@+id/slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don’t have an account ?"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/loginbutton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/loginbutton"
+        app:layout_constraintEnd_toEndOf="@id/loginbutton"
         tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onMyButtonClick"
+        android:textStyle="italic"
+        android:textColor="@color/blue"
+        android:text="@string/str_signin"
+        app:layout_constraintStart_toEndOf="@id/slogan"
+        app:layout_constraintTop_toTopOf="@id/slogan"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/create"
+        android:text="@string/str_Create"
+        app:layout_constraintTop_toTopOf="@id/slogan"
+        app:layout_constraintStart_toEndOf="@id/slogan"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/blue"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

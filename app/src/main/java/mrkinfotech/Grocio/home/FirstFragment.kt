@@ -11,7 +11,7 @@ import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentFirstBinding
 
 
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(){
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
