@@ -8,16 +8,16 @@
     <string name="previous">Previous</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="str_welcome_to_our_store">Grocio</string>
+    <string name="str_welcome_to_our_store">grocio</string>
     <string name="str_on_board_description">Online Grocery\n</string>
     <string name="str_get_started">GET STARTED\n</string>
     <string name="str_login">LOGIN</string>
     <string name="str_enter_your_email_password">enter password</string>
-    <string name="str_email">Gmail</string>
-        <string name="str_password">Password</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Password</string>
     <string name="str_Delevery">Delevery IN </string>
     <string name="str_minutes">10 minutes</string>
     <string name="str_signin">Sign up</string>
     <string name="str_Create">Create Account</string>
-    <string name="str_username">User Name</string>
+    <string name="str_username">User name</string>
 </resources>
