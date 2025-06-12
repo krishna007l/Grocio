@@ -12,7 +12,7 @@
         android:id="@+id/textTitleSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/animation_height_200dp"
+        android:layout_marginTop="160dp"
         android:maxLines="2"
         android:text="@string/str_signin"
         android:fontFamily="@font/gentiumbookplus_bold"
