@@ -3,10 +3,9 @@ package mrkinfotech.Grocio.ui.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ActivityMainBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
-import mrkinfotech.Grocio.ui.Adapter.itemDataclass
+import mrkinfotech.Grocio.ui.data.itemDataclass
 
 
 class HomeMainActivity : AppCompatActivity() {
