@@ -34,7 +34,9 @@
         <activity
             android:name=".home.HomeMainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Grocio"></activity>
+            android:theme="@style/Theme.Grocio">
+
+        </activity>
     </application>
 
 </manifest>
