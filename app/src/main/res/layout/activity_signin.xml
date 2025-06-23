@@ -123,7 +123,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="450dp"
         android:layout_marginLeft="300dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

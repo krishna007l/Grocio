@@ -30,7 +30,6 @@
         <activity
             android:name=".base.OnBoardingActivity"
             android:exported="true">
-            \
         </activity>
         <activity
             android:name=".home.HomeMainActivity"
