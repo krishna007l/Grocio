@@ -26,5 +26,8 @@ class LoginActivity : AppCompatActivity() {
     fun onMyButtonClick(view: View){
         setContentView(R.layout.fragment_sign_up)
     }
+    fun onMButtonClick(view: View){
+        setContentView(R.layout.fragment_login)
+    }
 
 }

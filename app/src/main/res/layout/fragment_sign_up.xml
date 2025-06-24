@@ -143,6 +143,6 @@
         android:layout_marginLeft="12dp"
         app:layout_constraintStart_toEndOf="@id/slogan"
         app:layout_constraintTop_toTopOf="@id/slogan"
-        android:onClick="onMyButtonClick"/>
+        android:onClick="onMButtonClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
