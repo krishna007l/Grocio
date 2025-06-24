@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    tools:context=".base.SplashActivity">
+    tools:context=".ui.base.SplashActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/default_view_pager_image_size_212"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginbackground"
     android:padding="@dimen/padding_8"
-    tools:context=".login.LoginFragment">
+    tools:context=".ui.login.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageLogo"
@@ -104,6 +104,7 @@
         app:layout_constraintStart_toStartOf="@id/loginbutton"
         />
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str_signin"

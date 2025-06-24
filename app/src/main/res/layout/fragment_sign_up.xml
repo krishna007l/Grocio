@@ -6,13 +6,13 @@
     android:background="@drawable/sine"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.SigninActivity">
+    tools:context=".ui.login.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textTitleSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/animation_height_200dp"
+        android:layout_marginTop="150dp"
         android:maxLines="2"
         android:text="@string/str_signin"
         android:fontFamily="@font/gentiumbookplus_bold"
@@ -113,17 +113,36 @@
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/card_radius_20dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/eye_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="@id/editTextPassword"
         android:layout_marginTop="450dp"
         android:layout_marginLeft="300dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="already creat account"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signin_button" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_login"
+        android:textColor="@color/blue"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintStart_toEndOf="@id/slogan"
+        app:layout_constraintTop_toTopOf="@id/slogan"
+        android:onClick="onMyButtonClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

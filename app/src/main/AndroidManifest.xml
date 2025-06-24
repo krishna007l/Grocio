@@ -12,14 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocio"
         tools:targetApi="31">
+
         <activity
-            android:name=".login.SigninActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".base.SplashActivity"
+            android:name=".ui.base.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".base.OnBoardingActivity"
+            android:name=".ui.base.OnBoardingActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".home.HomeMainActivity"
+            android:name=".ui.home.HomeMainActivity"
             android:exported="true"
             android:theme="@style/Theme.Grocio">
 

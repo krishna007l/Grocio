@@ -1,4 +1,4 @@
-package mrkinfotech.Grocio.login
+package mrkinfotech.Grocio.ui.login
 
 
 import android.os.Bundle
@@ -22,19 +22,9 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_login_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_login_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
     }
     fun onMyButtonClick(view: View){
-        setContentView(R.layout.activity_signin)
+        setContentView(R.layout.fragment_sign_up)
     }
+
 }

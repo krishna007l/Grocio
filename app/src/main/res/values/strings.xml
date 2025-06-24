@@ -18,6 +18,7 @@
     <string name="str_Delevery">Delevery IN </string>
     <string name="str_minutes">10 minutes</string>
     <string name="str_signin">Sign up</string>
+
     <string name="str_Create">Create Account</string>
     <string name="str_username">User name</string>
 </resources>

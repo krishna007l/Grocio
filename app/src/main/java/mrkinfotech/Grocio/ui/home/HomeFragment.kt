@@ -1,4 +1,4 @@
-package mrkinfotech.Grocio.home
+package mrkinfotech.Grocio.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import mrkinfotech.Grocio.R
-import mrkinfotech.Grocio.databinding.FragmentSecondBinding
+import mrkinfotech.Grocio.databinding.FragmentFirstBinding
 
-class SecondFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+class HomeFragment : Fragment(){
+
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,17 +20,13 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.SecondFragment)
-        }
     }
 
     override fun onDestroyView() {

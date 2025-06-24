@@ -1,11 +1,11 @@
-package mrkinfotech.Grocio.base
+package mrkinfotech.Grocio.ui.base
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import mrkinfotech.Grocio.databinding.ActivityOnBoardingBinding
 
-import mrkinfotech.Grocio.login.LoginActivity
+import mrkinfotech.Grocio.ui.login.LoginActivity
 
 class OnBoardingActivity : AppCompatActivity() {
 

@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="mrkinfotech.Grocio.home.FirstFragment"
+        android:name="mrkinfotech.Grocio.ui.home.HomeFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first"/>
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="mrkinfotech.Grocio.home.SecondFragment"
+        android:name="mrkinfotech.Grocio.ui.home.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second"/>
 
