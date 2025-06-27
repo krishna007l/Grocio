@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/vagetabel"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo"
+        android:scaleType="centerInside"
+        android:background="@drawable/curve"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/vegitabelname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vegetables"
+        android:fontFamily="@font/gentiumbookplus_bold"
+        android:textSize="12sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="4dp"/>
+    <ImageView
+        android:id="@+id/foodicon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo"
+        android:scaleType="centerInside"
+        android:background="@drawable/curve"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/foodname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food"
+        android:fontFamily="@font/gentiumbookplus_bold"
+        android:textSize="12sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="4dp"/>
+    <ImageView
+        android:id="@+id/categoryIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/logo"
+        android:scaleType="centerInside"
+        android:background="@drawable/curve"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vegetables"
+        android:fontFamily="@font/gentiumbookplus_bold"
+        android:textSize="12sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="4dp"/>
+</LinearLayout>
