@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
         binding.loginbutton.setOnClickListener {
             val userEmail = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-            if (userEmail == "test@gmail.com" && password == "123") {
+            if (userEmail == "demo@gmail.com" && password == "100") {
                 PreferenceHelper.setUserEmail(requireContext(), userEmail)
                 startActivity(Intent(requireContext(), HomeMainActivity::class.java))
             } else {
