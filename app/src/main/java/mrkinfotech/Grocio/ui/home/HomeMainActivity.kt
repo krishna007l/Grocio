@@ -2,7 +2,6 @@ package mrkinfotech.Grocio.ui.home
 
 
 import android.os.Bundle
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import mrkinfotech.Grocio.R
@@ -12,7 +11,7 @@ import mrkinfotech.Grocio.databinding.ActivityMainBinding
 class HomeMainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    var itemson =arrayListOf<itemdataclass>()
+    var itemson = arrayListOf<itemDataclass>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,19 +19,49 @@ class HomeMainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        itemson = ArrayList<itemdataclass>()
+        itemson = ArrayList<itemDataclass>()
 
 
-        itemson.add(itemdataclass("apple","$0.50"))
-        itemson.add(itemdataclass("mango","$0.20",))
-        itemson.add(itemdataclass("tomoto","$0.10",))
-        itemson.add(itemdataclass("orange","$0.70"))
-        itemson.add(itemdataclass("pinepal","$0.10",))
+        itemson.add(
+            itemDataclass(
+                "apple",
+                "$0.50",
+                "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"            )
+        )
+        itemson.add(
+            itemDataclass(
+                "mango",
+                "$0.20",
+                "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"
+            )
+        )
+        itemson.add(
+            itemDataclass(
+                "tomoto",
+                "$0.10",
+                "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"
+            )
+        )
+        itemson.add(
+            itemDataclass(
+                "orange",
+                "$0.70",
+                "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"
+            )
+        )
+        itemson.add(
+            itemDataclass(
+                "pinepal",
+                "$0.10",
+                "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"
+            )
+        )
 
-        binding.recyclerView.layoutManager= LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        binding.recyclerView.adapter= ProductAdapter(this, itemson)
+        binding.recyclerView.adapter = ItemAdapter(this, itemson, ItemAdapter.OnClickListener {itemData,clickType ->
 
-
+        })
     }
 }
