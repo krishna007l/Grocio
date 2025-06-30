@@ -1,13 +1,12 @@
-package mrkinfotech.Grocio.ui.home
-import android.R.attr.text
+package mrkinfotech.Grocio.ui.Adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ItemProductBinding
-
+import mrkinfotech.Grocio.ui.Adapter.itemDataclass
 
 class ItemAdapter(
     val context: Context,

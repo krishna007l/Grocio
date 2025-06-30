@@ -10,7 +10,7 @@ import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentSignUpBinding
 
 
-class SignUpFragment : Fragment() {
+class xSignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
