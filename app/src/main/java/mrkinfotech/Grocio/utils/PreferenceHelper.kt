@@ -1,5 +1,6 @@
 package com.example.shopify.utils
 
+import android.R
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
@@ -17,6 +18,7 @@ class PreferenceHelper {
         private const val KEY_LAST_LONGITUDE = "last_longitude"
         private const val KEY_LAST_ADDRESS = "last_address"
         private const val VERSION_NAME = "1"
+        private const val USER_LOGIN = "true"
 
         fun getSharedPrefs(context: Context): SharedPreferences {
             return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -26,6 +28,7 @@ class PreferenceHelper {
             return getSharedPrefs(context).getString(USER_EMAIL, VERSION_NAME)
         }
 
+
         fun setUserEmail(context: Context, email: String?) {
             getSharedPrefs(context).edit().putString(USER_EMAIL, email).commit()
         }
@@ -34,6 +37,15 @@ class PreferenceHelper {
             val userEmail = getUserEmail(context)
             return userEmail != null && userEmail != VERSION_NAME
         }
+        fun getonbody(context: Context): Boolean{
+            return getSharedPrefs(context).getBoolean(USER_LOGIN,false)
+        }
+        fun setonbody(context: Context,record: Boolean) {
+            getSharedPrefs(context).edit().putBoolean(USER_LOGIN,record).commit()
+        }
+
+
+
 
         /* fun saveProfileData(context: Context, profile: ProfileData?) {
              getSharedPrefs(context).edit {

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.home.HomeMainActivity">
+    android:orientation="vertical"
+    android:background="@drawable/sine"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_view"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/font_10"/>
+        android:layout_marginTop="220dp"
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

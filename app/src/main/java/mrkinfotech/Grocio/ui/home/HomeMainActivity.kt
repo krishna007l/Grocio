@@ -1,39 +1,41 @@
 package mrkinfotech.Grocio.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-
+import androidx.recyclerview.widget.LinearLayoutManager
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ActivityMainBinding
-import mrkinfotech.Grocio.databinding.FragmentFirstBinding
+import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
+import mrkinfotech.Grocio.ui.Adapter.itemDataclass
 
 
 class HomeMainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+    var itemson = arrayListOf<itemDataclass>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        itemson = ArrayList<itemDataclass>()
 
 
-    }
+        itemson.add(
+            itemDataclass(
+                "apple",
+                "$1.40",
+                "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"            )
+        )
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_home_content_main)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        binding.recyclerView.adapter =
+            ItemAdapter(this, itemson, ItemAdapter.OnClickListener { itemData, clickType ->
+
+            })
     }
 }

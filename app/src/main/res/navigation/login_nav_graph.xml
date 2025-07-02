@@ -9,13 +9,16 @@
         android:id="@+id/LoginFragment"
         android:name="mrkinfotech.Grocio.ui.login.LoginFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_login"/>
+        tools:layout="@layout/fragment_login">
 
+    </fragment>
 
     <fragment
-        android:id="@+id/SignupFragment"
+        android:id="@+id/SignUpFragment"
         android:name="mrkinfotech.Grocio.ui.login.SignUpFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_sign_up"/>
+        android:label="@string/str_signin"
+        tools:layout="@layout/fragment_sign_up">
+
+    </fragment>
 
 </navigation>
