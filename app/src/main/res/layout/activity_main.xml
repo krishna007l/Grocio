@@ -7,18 +7,10 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.home.HomeMainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/home_content_main" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/font_10"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

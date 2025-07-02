@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="Grocio.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-06-23T17:30:22.567336100Z">
+        <DropdownSelection timestamp="2025-06-27T11:18:25.269051700Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Gondaliya Hiten\.android\avd\Medium_Phone.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=46fda7b81cc0" />
             </handle>
           </Target>
         </DropdownSelection>

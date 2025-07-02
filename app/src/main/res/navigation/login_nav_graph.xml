@@ -11,10 +11,11 @@
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_login"/>
 
+
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="mrkinfotech.Grocio.ui.home.SecondFragment"
+        android:id="@+id/SignupFragment"
+        android:name="mrkinfotech.Grocio.ui.login.SignUpFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
+        tools:layout="@layout/fragment_sign_up"/>
 
 </navigation>

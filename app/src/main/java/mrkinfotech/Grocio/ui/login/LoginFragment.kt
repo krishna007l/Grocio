@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.shopify.utils.PreferenceHelper
-import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentLoginBinding
 import mrkinfotech.Grocio.ui.home.HomeMainActivity
 
@@ -22,12 +20,10 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
     }
-
-    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

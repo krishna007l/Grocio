@@ -29,5 +29,4 @@ class LoginActivity : AppCompatActivity() {
     fun onMButtonClick(view: View){
         setContentView(R.layout.fragment_login)
     }
-
 }
