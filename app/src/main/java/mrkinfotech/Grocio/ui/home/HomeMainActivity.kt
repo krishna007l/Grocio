@@ -3,7 +3,6 @@ package mrkinfotech.Grocio.ui.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ActivityMainBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
 import mrkinfotech.Grocio.ui.Adapter.itemDataclass
@@ -27,7 +26,7 @@ class HomeMainActivity : AppCompatActivity() {
             itemDataclass(
                 "apple",
                 "$1.40",
-                "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"            )
+                "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg" )
         )
 
         binding.recyclerView.layoutManager =
