@@ -1,5 +1,6 @@
 package mrkinfotech.Grocio.ui.base
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,8 @@ import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.ui.home.HomeMainActivity
 import mrkinfotech.Grocio.ui.login.LoginActivity
 
+
+
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
             if (PreferenceHelper.isUserLoggedIn(this)){
                 if(PreferenceHelper.getonbody(this))
                 {
-                    startActivity(Intent(this,HomeMainActivity::class.java))
+                    startActivity(Intent(this, HomeMainActivity::class.java))
                 }
                 else{
                     startActivity(Intent(this, LoginActivity::class.java))

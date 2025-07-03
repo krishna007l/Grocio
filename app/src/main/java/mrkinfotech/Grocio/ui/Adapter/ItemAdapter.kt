@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ItemProductBinding
 import mrkinfotech.Grocio.ui.data.itemDataclass
 
 class ItemAdapter(
     val context: Context,
     private var itemList: ArrayList<itemDataclass>,
-    private val onClickListener: OnClickListener
+    private val onClickListener: () -> Unit
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -39,17 +40,17 @@ class ItemAdapter(
     inner class ItemViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(dataModal: itemDataclass, onClickListener: OnClickListener) {
+        fun bind(dataModal: itemDataclass, onClickListener: () -> Unit) {
 
-            binding.productTitle.text = dataModal.nameProduct
-            binding.productPrice.text = dataModal.priceProduct.toString()
+            binding.textView.text = dataModal.priceProduct.toString()
 
 
 
             Glide.with(context)
                 .load(dataModal.imageProduct)
                 .centerCrop()
-                .into(binding.productImage)
+                .placeholder(R.drawable.login_image)
+                .into(binding.imageview)
 
 //            // Cart button state
 //            if (dataModal.isCarted) {

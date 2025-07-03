@@ -1,4 +1,4 @@
 package mrkinfotech.Grocio.utils
 
-class CustomDialog {
+class CustomDialog(toString: String, toString1: String) {
 }
