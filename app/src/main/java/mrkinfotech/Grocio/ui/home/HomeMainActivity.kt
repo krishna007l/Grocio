@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import mrkinfotech.Grocio.databinding.ActivityMainBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
-import mrkinfotech.Grocio.ui.Adapter.itemDataclass
+import mrkinfotech.Grocio.ui.data.itemDataclass
 
 
 class HomeMainActivity : AppCompatActivity() {
