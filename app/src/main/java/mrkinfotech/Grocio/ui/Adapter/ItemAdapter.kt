@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ItemProductBinding
-import mrkinfotech.Grocio.ui.Adapter.itemDataclass
 
 class ItemAdapter(
     val context: Context,
@@ -44,11 +44,10 @@ class ItemAdapter(
             binding.productTitle.text = dataModal.nameProduct
             binding.productPrice.text = dataModal.priceProduct.toString()
 
-
-
             Glide.with(context)
                 .load(dataModal.imageProduct)
                 .centerCrop()
+                .placeholder(R.drawable.logo)
                 .into(binding.productImage)
 
 //            // Cart button state

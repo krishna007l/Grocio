@@ -10,11 +10,12 @@ import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentSignUpBinding
 
 
-class xSignUpFragment : Fragment() {
+class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUpBinding.inflate(inflater)

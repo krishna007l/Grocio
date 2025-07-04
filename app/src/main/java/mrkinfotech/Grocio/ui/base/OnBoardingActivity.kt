@@ -21,6 +21,5 @@ class OnBoardingActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             PreferenceHelper.setonbody(this,true)
         }
-
     }
 }
