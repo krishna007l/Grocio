@@ -1,6 +1,8 @@
 package mrkinfotech.Grocio.ui.home
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,10 +20,8 @@ class HomeMainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_login_content_main)
-        return navController.navigateUp()
-                || super.onSupportNavigateUp()
-    }
+
+
 }

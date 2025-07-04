@@ -14,6 +14,7 @@ import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentLoginBinding
 import mrkinfotech.Grocio.ui.home.HomeFragment
 import mrkinfotech.Grocio.ui.home.HomeMainActivity
+import mrkinfotech.Grocio.utils.CustomDialog
 
 
 class LoginFragment : Fragment() {
@@ -39,13 +40,8 @@ class LoginFragment : Fragment() {
                 PreferenceHelper.setUserEmail(requireContext(), userEmail)
                 startActivity(Intent(requireContext(), HomeMainActivity::class.java))
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Enter Valid UserName & Password",
-                    Toast.LENGTH_SHORT
-                ).show()
+                CustomDialog.showTostMessage(requireContext(),"Enter Valid UserName & Password")
             }
         }
-
     }
 }

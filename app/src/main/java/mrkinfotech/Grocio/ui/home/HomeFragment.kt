@@ -34,15 +34,10 @@ class HomeFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        itemAdapter =
-            ItemAdapter(
-                requireContext(),
-                MasterDataUtils.productitem(requireContext()),
+        binding.recyclerView.layoutManager= LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        itemAdapter = ItemAdapter(requireContext(),MasterDataUtils.productitem(requireContext()),
                 ItemAdapter.OnClickListener { itemData, clickType -> })
-        binding.recyclerView.adapter = itemAdapter
-    }
+        binding.recyclerView.adapter = itemAdapter }
 
     override fun onDestroyView() {
         super.onDestroyView()
