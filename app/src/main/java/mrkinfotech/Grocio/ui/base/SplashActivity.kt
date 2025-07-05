@@ -16,19 +16,20 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (PreferenceHelper.isUserLoggedIn(this)){
                 if(PreferenceHelper.getonbody(this))
                 {
+                    if (PreferenceHelper.isUserLoggedIn(this)){
                     startActivity(Intent(this,HomeMainActivity::class.java))
                 }
                 else{
-                    startActivity(Intent(this, OnBoardingActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                 }
             }
             else {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, OnBoardingActivity::class.java))
             }
             finish() // Closes splash activity so user can't return to it
         }, 2000)
     }
 }
+

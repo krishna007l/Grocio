@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/sign_up_layout"
     android:background="@drawable/sine"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textTitleSignin"
@@ -44,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
-        android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -64,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editusername" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/SignEmail"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,15 +84,14 @@
         android:textAlignment="textStart"
         android:layout_marginLeft="35dp"
         android:textSize="@dimen/font_24"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/SignEmail" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/SignPassword"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_8"
-        android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -110,7 +106,7 @@
         android:text="@string/str_signin"
         android:fontFamily="@font/gentiumbookplus_bold"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@id/SignPassword"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/card_radius_20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,8 +116,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/eye_24"
-        app:layout_constraintBottom_toBottomOf="@id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="@id/editTextPassword"
+        app:layout_constraintBottom_toBottomOf="@id/SignPassword"
+        app:layout_constraintEnd_toEndOf="@id/SignPassword"
         android:layout_marginTop="450dp"
         android:layout_marginLeft="300dp"/>
 
@@ -138,7 +134,7 @@
     </androidx.appcompat.widget.AppCompatTextView>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/signin"
+        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str_login"
@@ -146,6 +142,6 @@
         android:layout_marginLeft="12dp"
         app:layout_constraintStart_toEndOf="@id/slogan"
         app:layout_constraintTop_toTopOf="@id/slogan"
-        android:onClick="onMButtonClick"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

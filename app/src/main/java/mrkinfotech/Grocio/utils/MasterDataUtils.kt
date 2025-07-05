@@ -5,6 +5,7 @@ import android.os.Message
 import android.view.View
 import android.widget.Toast
 import mrkinfotech.Grocio.R
+import mrkinfotech.Grocio.ui.Adapter.ImageSlideAdapter
 import mrkinfotech.Grocio.ui.Adapter.itemDataclass
 
 object MasterDataUtils {
@@ -49,10 +50,12 @@ object MasterDataUtils {
         return item
 
     }
-    fun itemData(){
 
+    fun viewpages(): ArrayList<String>{
+        val page = ArrayList<String>()
+        page.add("R.drawable.apple"
+        )
+        return viewpages()
     }
-
-
 
 }

@@ -7,7 +7,7 @@ import androidx.core.content.edit
 
 class PreferenceHelper {
     companion object {
-        private const val PREFS_NAME = "Shopify"
+        private const val PREFS_NAME = "Grocio"
         private const val USER_EMAIL = "UserEmail"
         private const val USER_NAME = "UserName"
         private const val KEY_USER_AGE = "userAge"
