@@ -1,35 +1,61 @@
 package mrkinfotech.Grocio.utils
 
 import android.content.Context
-import mrkinfotech.Grocio.ui.data.itemDataclass
+import android.os.Message
+import android.view.View
+import android.widget.Toast
+import mrkinfotech.Grocio.R
+import mrkinfotech.Grocio.ui.Adapter.ImageSlideAdapter
+import mrkinfotech.Grocio.ui.Adapter.itemDataclass
 
 object MasterDataUtils {
-    var itemson = ArrayList<itemDataclass>()
-    fun contextlist(context: Context){
+    fun productitem(context: Context): ArrayList<itemDataclass>{
+        val item = ArrayList<itemDataclass>()
+        item.add(
+            itemDataclass(
+                nameProduct = "apple" ,
+                priceProduct = "$1.40" ,
+                R.drawable.apple
+            )
+        )
 
-
-        itemson.add(itemDataclass("apple", "$1.40", "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg" ))
-        itemson.add(itemDataclass("apple","$0.50","https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"))
-        itemson.add(itemDataclass("mango", "$0.20", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
-        itemson.add(itemDataclass("tomoto", "$0.10", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
-        itemson.add(itemDataclass("orange", "$0.70", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
-        itemson.add(itemDataclass("pinepal", "$0.10","https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
+        item.add(
+            itemDataclass(
+                nameProduct = "orenge" ,
+                priceProduct = "$2.00" ,
+                R.drawable.oreng
+            )
+        )
+        item.add(
+            itemDataclass(
+                nameProduct = "banana" ,
+                priceProduct = "$1.23" ,
+                R.drawable.banana
+            )
+        )
+        item.add(
+            itemDataclass(
+                nameProduct = "mango" ,
+                priceProduct = "$1.12" ,
+                R.drawable.mango
+            )
+        )
+        item.add(
+            itemDataclass(
+                nameProduct = "watermalen" ,
+                priceProduct = "$1.99" ,
+                R.drawable.watermalen
+            )
+        )
+        return item
 
     }
-    var = ArrayList<itemDataclass>()
-    fun (context: Context){
-        var dataset = ArrayList<itemDataclass>()
 
-
-
-        dataset.add( "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg" )
-        dataset.add("https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg")
-        dataset.add("https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291")
-        dataset.add("https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291")
-        dataset.add("https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291")
-        dataset.add("https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291")
-    return dataset
+    fun viewpages(): ArrayList<String>{
+        val page = ArrayList<String>()
+        page.add("R.drawable.apple"
+        )
+        return viewpages()
     }
-
 
 }

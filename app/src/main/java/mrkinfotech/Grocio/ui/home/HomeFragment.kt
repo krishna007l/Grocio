@@ -5,26 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentFirstBinding
+import mrkinfotech.Grocio.ui.Adapter.ImageSlideAdapter
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
-import mrkinfotech.Grocio.ui.data.itemDataclass
+import mrkinfotech.Grocio.ui.Adapter.itemDataclass
+import mrkinfotech.Grocio.utils.MasterDataUtils
+import kotlin.String
 
 
 class HomeFragment : Fragment(){
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
-    lateinit var ItemAdapter: ItemAdapter
-    var itemson = arrayListOf<itemDataclass>()
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var itemAdapter: ItemAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):
+            View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
@@ -33,22 +32,19 @@ class HomeFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-                val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager= LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        itemAdapter = ItemAdapter(requireContext(),MasterDataUtils.productitem(requireContext()),
+                ItemAdapter.OnClickListener { itemData, clickType -> })
 
 
-        itemson = ArrayList()
-        itemson.add(itemDataclass("hiten","500", R.drawable.login_image.toString()))
-        itemson.add(itemDataclass("hiten","500", R.drawable.login_image.toString()))
-        itemson.add(itemDataclass("hiten","500", R.drawable.login_image.toString()))
-
-        ItemAdapter= ItemAdapter(requireContext(),itemson, onClickListener = {})
-        recyclerView.adapter=ItemAdapter
+        binding.recyclerView.adapter = itemAdapter
+        binding.viewpage.adapter = ImageSlideAdapter(requireContext(), MasterDataUtils.viewpages())
 
     }
-        override fun onDestroyView() {
-            super.onDestroyView()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
-    }
 
+    }
 }

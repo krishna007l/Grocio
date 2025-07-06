@@ -30,8 +30,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.home.HomeMainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Grocio" />
+            android:exported="true"/>
     </application>
 
 </manifest>
