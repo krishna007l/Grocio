@@ -23,7 +23,6 @@ import mrkinfotech.Grocio.utils.CustomDialog
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,24 +39,25 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.SignUpFragment)
         }
         binding.loginbutton.setOnClickListener {
-            val userEmail = binding.editTextEmail.text.toString()
-            val Password = binding.editTextPassword.text.toString()
+            val userEmail = binding.loginEmail.text.toString()
+            val userPassword = binding.loginPassword.text.toString()
             val auth = FirebaseAuth.getInstance()
-            if (userEmail.isNotEmpty() && Password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(userEmail, Password)
+            if (userEmail.isNotEmpty() && userPassword.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(userEmail, userPassword)
                     .addOnCompleteListener { task ->
-                        auth.signInWithEmailAndPassword(userEmail, Password)
+                        auth.signInWithEmailAndPassword(userEmail, userPassword)
                             .addOnCompleteListener(requireActivity()) { task ->
                                 if (task.isSuccessful) {
-                                    CustomDialog.showTostMessage(requireContext(),"sucees full")
-
+                                    CustomDialog.showTostMessage(requireContext(),"Loding...")
+                                    PreferenceHelper.setUserEmail(requireContext(),userEmail)
+                                    startActivity(Intent(requireContext(), HomeMainActivity::class.java))
                                 } else {
-                                    CustomDialog.showTostMessage(requireContext(),"enter valid ")
+                                    CustomDialog.showTostMessage(requireContext(),"Enter Valid Email & Password  ")
                                 }
                             }
                     }
             }else{
-                startActivity(Intent(requireContext(), HomeMainActivity::class.java))
+                CustomDialog.showTostMessage(requireContext(),"Enter Email & Password ")
             }
         }
     }

@@ -96,6 +96,15 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         app:layout_constraintTop_toBottomOf="@+id/textTitlePassword" />
+   <androidx.appcompat.widget.AppCompatTextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintStart_toStartOf="@id/SignPassword"
+       app:layout_constraintTop_toBottomOf="@id/SignPassword"
+       android:textColor="@color/brown"
+       android:text="Password must be at least six characters">
+   </androidx.appcompat.widget.AppCompatTextView>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SinupButton"
@@ -126,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="already creat account"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/SinupButton">
@@ -139,7 +148,7 @@
         android:layout_height="wrap_content"
         android:text="@string/str_login"
         android:textColor="@color/blue"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintStart_toEndOf="@id/slogan"
         app:layout_constraintTop_toTopOf="@id/slogan"
         />

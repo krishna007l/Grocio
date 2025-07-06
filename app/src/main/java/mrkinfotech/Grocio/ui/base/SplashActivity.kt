@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
                 if(PreferenceHelper.getonbody(this))
                 {
                     if (PreferenceHelper.isUserLoggedIn(this)){
-                    startActivity(Intent(this,HomeMainActivity::class.java))
+                        startActivity(Intent(this, HomeMainActivity::class.java))
                 }
                 else{
                     startActivity(Intent(this, LoginActivity::class.java))

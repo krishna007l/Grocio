@@ -32,22 +32,22 @@ class SignUpFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.signup.setOnClickListener {
-            findNavController().navigate(R.id.nav_host_fragment_login_content_main)
+            findNavController().navigate(R.id.LoginFragment)
         }
 
         binding.SinupButton.setOnClickListener {
+            val username = binding.editusername.text.toString()
             val email = binding.SignEmail.text.toString()
-            val cpassword = binding.SignPassword.text.toString()
+            val password = binding.SignPassword.text.toString()
             var auth = FirebaseAuth.getInstance()
-            if (email.isNotEmpty() && cpassword.isNotEmpty()) {
-                auth.createUserWithEmailAndPassword(email, cpassword)
+            if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
+                auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
                             findNavController().navigate(R.id.LoginFragment)
                         } else {
-                            // If sign in fails, display a message to the user.
+                            CustomDialog.showTostMessage(requireContext(),"enter vaild email and password")
                         }
                     }
             }else{
