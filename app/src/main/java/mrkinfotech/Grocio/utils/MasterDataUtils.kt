@@ -23,7 +23,7 @@ object MasterDataUtils {
 
 
         dataset.add( "https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg" )
-        dataset.add("apple","$0.50","https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"))
+        dataset.add("https://en.m.wikipedia.org/wiki/File:Red_Apple.jpg"))
         dataset.add("mango", "$0.20", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
         dataset.add("tomoto", "$0.10", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
         dataset.add("orange", "$0.70", "https://www.shutterstock.com/image-photo/ripe-mango-green-leaf-isolated-on-2563853291"))
