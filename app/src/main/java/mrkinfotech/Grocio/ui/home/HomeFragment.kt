@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentFirstBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
-import mrkinfotech.Grocio.ui.data.itemDataclass
+
 
 import mrkinfotech.Grocio.utils.MasterDataUtils
 
