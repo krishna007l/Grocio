@@ -36,7 +36,7 @@ class SignUpFragment : Fragment() {
 
         var firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.button.setOnClickListener {
+        binding.SinupToLogin.setOnClickListener {
             val email = binding.textTitleEmail.text.toString()
             val password = binding.textTitlePassword.text.toString()
 
@@ -69,9 +69,9 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.SinupButton.setOnClickListener {
+      /*  binding.SinupToLogin.setOnClickListener {
             findNavController().navigate(R.id.LoginFragment)
-        }
+        }*/
 
         binding.signin.setOnClickListener {
             findNavController().navigate(R.id.LoginFragment)
