@@ -1,15 +1,11 @@
 package mrkinfotech.Grocio.utils
 
 import android.content.Context
-import android.os.Message
-import android.view.View
-import android.widget.Toast
 import mrkinfotech.Grocio.R
-import mrkinfotech.Grocio.ui.Adapter.ImageSlideAdapter
-import mrkinfotech.Grocio.ui.Adapter.itemDataclass
+import mrkinfotech.Grocio.ui.Datamodel.itemDataclass
 
 object MasterDataUtils {
-    fun productitem(context: Context): ArrayList<itemDataclass>{
+    fun productItem(context: Context): ArrayList<itemDataclass>{
         val item = ArrayList<itemDataclass>()
         item.add(
             itemDataclass(
@@ -51,11 +47,12 @@ object MasterDataUtils {
 
     }
 
-    fun viewpages(): ArrayList<String>{
-        val page = ArrayList<String>()
-        page.add("R.drawable.apple"
-        )
-        return viewpages()
+    fun viewPages(): ArrayList<String>{
+        val page = ArrayList<Int>()
+        page.add(R.drawable.apple)
+        page.add(R.drawable.banana)
+        page.add(R.drawable.mango)
+        return TODO("Provide the return value")
     }
 
 }

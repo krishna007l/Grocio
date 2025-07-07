@@ -26,7 +26,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.SecondFragment)
+            findNavController().navigate(R.id.SignUpFragment)
         }
     }
 

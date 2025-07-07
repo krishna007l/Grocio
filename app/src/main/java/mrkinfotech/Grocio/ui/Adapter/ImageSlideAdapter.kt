@@ -11,7 +11,7 @@ import mrkinfotech.Grocio.R
 
 class ImageSlideAdapter(
     private val context: Context,
-    private var imageList: ArrayList<String>,
+    private var imageList: ArrayList<String>
 ) : PagerAdapter() {
 
     override fun getCount(): Int = imageList.size

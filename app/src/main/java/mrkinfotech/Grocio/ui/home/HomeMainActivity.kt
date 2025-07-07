@@ -14,5 +14,4 @@ class HomeMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
     }
-
 }

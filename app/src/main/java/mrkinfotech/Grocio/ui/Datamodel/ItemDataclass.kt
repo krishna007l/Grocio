@@ -1,4 +1,4 @@
-package mrkinfotech.Grocio.ui.Adapter
+package mrkinfotech.Grocio.ui.Datamodel
 
 data class itemDataclass(
     val nameProduct : String ,
