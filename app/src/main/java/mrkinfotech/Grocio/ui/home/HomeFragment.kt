@@ -1,10 +1,10 @@
 package mrkinfotech.Grocio.ui.home
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.Fragment
 import android.os.Handler
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager

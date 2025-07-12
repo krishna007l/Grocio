@@ -43,7 +43,6 @@ class LoginFragment : Fragment() {
                         auth.signInWithEmailAndPassword(userEmail, userPassword)
                             .addOnCompleteListener(requireActivity()) { task ->
                                 if (task.isSuccessful) {
-                                    CustomDialog.showTostMessage(requireContext(),"Loding...")
                                     PreferenceHelper.setUserEmail(requireContext(),userEmail)
                                     startActivity(Intent(requireContext(), HomeMainActivity::class.java))
 

@@ -40,3 +40,5 @@ class ImageSlideAdapter(
         container.removeView(`object` as View)
     }
 }
+
+
