@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeFragment">
 
     <fragment
         android:id="@+id/HomeFragment"
         android:name="mrkinfotech.Grocio.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_first">
-
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 </navigation>

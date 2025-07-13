@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true"
     tool:context=".ui.home.HomeMainActivity">
 
-    <include layout="@layout/fragment_first" />
+
+    <include layout="@layout/home_content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

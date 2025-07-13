@@ -8,10 +8,11 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import androidx.viewpager.widget.PagerAdapter
 import mrkinfotech.Grocio.R
+import mrkinfotech.Grocio.ui.Datamodel.itemDataclass
 
 class ImageSlideAdapter(
     private val context: Context,
-    private var imageList: ArrayList<String>
+    private var imageList: ArrayList<itemDataclass>
 ) : PagerAdapter() {
 
     override fun getCount(): Int = imageList.size
