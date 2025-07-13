@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
             requireContext(), MasterDataUtils.productItem(requireContext()),
             ItemAdapter.OnClickListener { itemData, clickType -> })
         imageSlideAdapter =
-            ImageSlideAdapter(requireContext(), MasterDataUtils.productItem(requireContext()))
+            ImageSlideAdapter(requireContext(), MasterDataUtils.viewPages(requireContext()))
 
         binding.recyclerView.adapter = itemAdapter
         binding.viewpage.adapter = imageSlideAdapter
@@ -53,8 +53,7 @@ class HomeFragment : Fragment() {
         var item = ArrayList<String>()
         item.add("apple")
         item.add("banana")
-        var Count = MasterDataUtils.countItem(requireContext(),item)
-        CustomDialog.showTostMessage(requireContext(),Count.toString())
+        CustomDialog.showTostMessage(requireContext(),MasterDataUtils.countItem(requireContext(),item).toString())
 
     }
 
@@ -62,8 +61,7 @@ class HomeFragment : Fragment() {
         runnable = object : Runnable {
             override fun run() {
                 if (MasterDataUtils.viewPages(requireContext()).isNotEmpty()) {
-                    currentPage =
-                        (currentPage + 1) % MasterDataUtils.viewPages(requireContext()).size
+                    currentPage = (currentPage + 1) % MasterDataUtils.viewPages(requireContext()).size
                     binding.viewpage.setCurrentItem(currentPage, true)
                     handler.postDelayed(this, scrollDelay)
                 }
