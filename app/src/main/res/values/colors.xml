@@ -7,5 +7,10 @@
     <color name="blue">#0A609D</color>
     <color name="red">#C71313</color>
     <color name="brown">#7A6464</color>
+    <color name="RGB">#FF0000</color>
+    <color name="color_black">#FF000000</color>
+    <color name="color_white">#FFFFFFFF</color>
+    <color name="color_yellow">#FFFF00</color>
+    <color name="color_light_gray">#7C7C7C</color>
 
 </resources>

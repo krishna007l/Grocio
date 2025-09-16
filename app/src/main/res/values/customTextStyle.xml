@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_18</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SmallTextSizeTitle" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="MediumTextSizeTitle" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="MediumLargeTextSizeTitle" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_20</item>
+    </style>
+
+    <style name="LargeTextSizeTitle" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_24</item>
+    </style>
+
+    <style name="CenterTextTextSizeTitle" parent="CustomHeaderTextStyle">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="SmallTextSizeTitleColorWhite" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:color">@color/color_white</item>
+    </style>
+
+    <style name="ExtraBoldTextFont14" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="ExtraBoldTextFont18" parent="CustomHeaderTextStyle">
+        <item name="android:textSize">@dimen/font_18</item>
+    </style>
+    //////////////////////////////////////////////////
+
+    <style name="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/color_light_gray</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SmallTextSizeDescription" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_12</item>
+        <item name="android:textColor">@color/color_light_gray</item>
+    </style>
+
+    <style name="MediumTextSizeDescription" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="LargeTextSizeDescription" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_18</item>
+    </style>
+
+    <style name="TextSizeDescription20sp" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_20</item>
+    </style>
+
+    <style name="ExtraLargeTextSizeDescription" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_24</item>
+    </style>
+
+    <style name="ExtraLargeTextSizeDescription28" parent="CustomDescriptionTextStyle">
+        <item name="android:textSize">@dimen/font_28</item>
+    </style>
+
+    //////////////////////////////////////////
+
+    <style name="CustomInfoTextStyle">
+        <item name="android:textSize">@dimen/font_12</item>
+        <item name="android:textColor">@color/color_light_gray</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SmallestTextSizeDescription" parent="CustomInfoTextStyle">
+        <item name="android:textSize">@dimen/font_10</item>
+    </style>
+</resources>

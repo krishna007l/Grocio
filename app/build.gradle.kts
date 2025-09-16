@@ -60,5 +60,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.viewpager2)
-
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation ("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.50")
+    implementation ("com.google.android.material:material:1.11.0")
+    implementation(libs.material)
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

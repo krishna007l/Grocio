@@ -1,5 +1,6 @@
 package mrkinfotech.Grocio.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -8,9 +9,11 @@ import androidx.fragment.app.Fragment
 import android.os.Handler
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shopify.utils.PreferenceHelper
 import mrkinfotech.Grocio.databinding.FragmentHomeBinding
 import mrkinfotech.Grocio.ui.Adapter.ImageSlideAdapter
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
+import mrkinfotech.Grocio.ui.login.LoginActivity
 import mrkinfotech.Grocio.utils.CustomDialog
 import mrkinfotech.Grocio.utils.MasterDataUtils
 
@@ -26,9 +29,7 @@ class HomeFragment : Fragment() {
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,23 +38,24 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        itemAdapter = ItemAdapter(
-            requireContext(), MasterDataUtils.productItem(requireContext()),
-            ItemAdapter.OnClickListener { itemData, clickType -> })
+
         imageSlideAdapter =
             ImageSlideAdapter(requireContext(), MasterDataUtils.viewPages(requireContext()))
-
-        binding.recyclerView.adapter = itemAdapter
         binding.viewpage.adapter = imageSlideAdapter
         startAutoScroll()
 
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        itemAdapter = ItemAdapter(
+            requireContext(), MasterDataUtils.productItem(requireContext()),
+            ItemAdapter.OnClickListener { itemData, clickType -> })
+        binding.recyclerView.adapter = itemAdapter
 
-        var item = ArrayList<String>()
-        item.add("apple")
-        item.add("banana")
-        CustomDialog.showTostMessage(requireContext(),MasterDataUtils.countItem(requireContext(),item).toString())
+        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        itemAdapter = ItemAdapter(
+            requireContext(), MasterDataUtils.productItem(requireContext()),
+            ItemAdapter.OnClickListener { itemData, clickType -> })
+        binding.recyclerView2.adapter = itemAdapter
+
 
     }
 
@@ -70,8 +72,4 @@ class HomeFragment : Fragment() {
         handler.postDelayed(runnable!!, scrollDelay)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
