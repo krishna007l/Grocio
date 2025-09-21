@@ -10,12 +10,12 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import mrkinfotech.Grocio.R
-import mrkinfotech.Grocio.databinding.FragmentSignUpBinding
+import mrkinfotech.Grocio.databinding.FragmentSingUpBinding
 import mrkinfotech.Grocio.utils.CustomDialog
 
 
 class SignUpFragment : Fragment() {
-    private lateinit var binding: FragmentSignUpBinding
+    private lateinit var binding: FragmentSingUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class SignUpFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignUpBinding.inflate(inflater)
+        binding = FragmentSingUpBinding.inflate(inflater)
         return binding.root
     }
 

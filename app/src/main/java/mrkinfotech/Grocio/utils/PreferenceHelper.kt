@@ -1,9 +1,7 @@
 package com.example.shopify.utils
 
-import android.R
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.core.content.edit
 
 class PreferenceHelper {
     companion object {
@@ -19,6 +17,8 @@ class PreferenceHelper {
         private const val KEY_LAST_ADDRESS = "last_address"
         private const val VERSION_NAME = "1"
         private const val USER_LOGIN = "true"
+
+
 
         fun getSharedPrefs(context: Context): SharedPreferences {
             return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

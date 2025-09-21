@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "655990065070",
+    "firebase_url": "https://grocio-eb96d-default-rtdb.firebaseio.com",
+    "project_id": "grocio-eb96d",
+    "storage_bucket": "grocio-eb96d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655990065070:android:dd7e5d557b121de6a8aa3f",
+        "android_client_info": {
+          "package_name": "mrkinfotech.Grocio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655990065070-ie4kcj2dg1n5f2ikmdts327glqts7g8v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mrkinfotech.Grocio",
+            "certificate_hash": "99c014acd675faad5695605dc5f4871e50acb890"
+          }
+        },
+        {
+          "client_id": "655990065070-iajg4fnvghlfpnklc9jpi2kssrci0npq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATr5POFhxFx1krkI0vsZblk3hX7hvtPRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655990065070-iajg4fnvghlfpnklc9jpi2kssrci0npq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

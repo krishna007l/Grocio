@@ -8,13 +8,24 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="mrkinfotech.Grocio.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_first">
+        android:label="home"
+        tools:layout="@layout/fragment_home"/>
 
-    </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="mrkinfotech.Grocio.ui.home.SecondFragment"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/CategaryFragment"
+        android:name="mrkinfotech.Grocio.ui.Account.CategaryFragment"
+        android:label="categary"
+        tools:layout="@layout/fragment_categary"/>
+    <fragment
+        android:id="@+id/FavoriteFragment"
+        android:name="mrkinfotech.Grocio.ui.Account.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite"/>
 
-    </fragment>
+    <fragment
+        android:id="@+id/AccountFragment"
+        android:name="mrkinfotech.Grocio.ui.Account.AccountFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account"/>
+
 </navigation>

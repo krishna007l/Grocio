@@ -52,6 +52,7 @@
     <dimen name="run_button_default_width">64dp</dimen>
 
     <dimen name="text_timer_width">96dp</dimen>
+
     <dimen name="run_button_default_height">54dp</dimen>
     <dimen name="run_textView_size">48dp</dimen>
 
@@ -67,7 +68,7 @@
     <dimen name="default_image_size_54dp">54dp</dimen>
     <dimen name="default_image_size_small">48dp</dimen>
     <dimen name="default_image_size_32dp">32dp</dimen>
-    <dimen name="default_image_icon_medium">24dp</dimen>
+    <dimen name="default_image_size_24dp">24dp</dimen>
     <dimen name="default_image_icon_small">18dp</dimen>
     <dimen name="progress_bar_height">4dp</dimen>
 

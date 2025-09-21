@@ -17,7 +17,7 @@
         android:id="@+id/SignUpFragment"
         android:name="mrkinfotech.Grocio.ui.login.SignUpFragment"
         android:label="@string/str_signin"
-        tools:layout="@layout/fragment_sign_up">
+        tools:layout="@layout/fragment_sing_up">
 
     </fragment>
 

@@ -37,7 +37,7 @@
         android:id="@+id/textTitleEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margin_48"
+        android:layout_marginVertical="@dimen/margin_24"
         android:maxLines="2"
         android:textColor="@color/black"
         android:text="@string/str_email"
@@ -95,12 +95,32 @@
         android:text="@string/str_login"
         app:layout_constraintTop_toBottomOf="@id/loginPassword"/>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_or"
+        android:fontFamily="@font/gentiumbookplus_regular"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_24"
+        app:layout_constraintTop_toBottomOf="@+id/loginbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/Googlewithsingin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/google_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textOR"/>
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/slogan"
+        android:layout_marginTop="@dimen/margin_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don’t have an account ?"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/loginbutton"
+        app:layout_constraintTop_toBottomOf="@id/Googlewithsingin"
         app:layout_constraintStart_toStartOf="@id/loginbutton"
         />
     <androidx.appcompat.widget.AppCompatTextView

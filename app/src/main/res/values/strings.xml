@@ -18,8 +18,18 @@
     <string name="str_Delevery">Delevery IN </string>
     <string name="str_minutes">10 minutes</string>
     <string name="str_signin">Sign up</string>
+    <string name="toggle_flash">Toggle Flash</string>
+    <string name="scanned_data">Scanned Data</string>
 
     <string name="str_Create">Create Account</string>
     <string name="str_username">User name</string>
     <string name="str_Home">Home\n</string>
+    <string name="str_or">OR</string>
+    <string name="str_orders">Order</string>
+    <string name="str_delivery_address">delivery address</string>
+    <string name="str_customer_support">customer support</string>
+    <string name="str_help">Help</string>
+    <string name="str_about">About</string>
+    <string name="str_log_out">Log Out</string>
+    <string name="str_termandcondition">Term and Conditon</string>
 </resources>
