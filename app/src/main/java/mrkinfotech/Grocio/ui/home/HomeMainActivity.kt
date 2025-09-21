@@ -12,7 +12,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.ActivityHomeBinding
-import mrkinfotech.Grocio.ui.Account.AccountFragment
 
 class HomeMainActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -25,7 +24,6 @@ class HomeMainActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         setSupportActionBar(binding.toolbar)
 
         val navHostFragment =
@@ -34,18 +32,16 @@ class HomeMainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-
-                R.id.CategaryFragment,
                 R.id.HomeFragment,
+                R.id.CategaryFragment,
+                R.id.FavoriteFragment,
                 R.id.AccountFragment
             ),
         )
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController(navController)
 
     }
-
     fun bottomNavigationViewGone(){
         binding.bottomNavigationView.visibility = View.GONE
     }
@@ -55,4 +51,5 @@ class HomeMainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-}
+
+        }

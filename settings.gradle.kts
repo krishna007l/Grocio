@@ -14,8 +14,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://groovy.jfrog.io/artifactory/libs-release/") }
+        maven { url = uri("https://eu.livotov.com/releases/") }
     }
 }
 

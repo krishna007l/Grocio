@@ -16,6 +16,11 @@
         android:name="mrkinfotech.Grocio.ui.Account.CategaryFragment"
         android:label="categary"
         tools:layout="@layout/fragment_categary"/>
+    <fragment
+        android:id="@+id/FavoriteFragment"
+        android:name="mrkinfotech.Grocio.ui.Account.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite"/>
 
     <fragment
         android:id="@+id/AccountFragment"

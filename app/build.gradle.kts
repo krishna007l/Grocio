@@ -1,17 +1,22 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file("CAMView-2.0.1.aar"))
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+
 }
+
 
 android {
     namespace = "mrkinfotech.Grocio"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "mrkinfotech.Grocio"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -37,7 +42,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
     buildToolsVersion = "35.0.0"
+
 }
 
 dependencies {
@@ -69,4 +76,5 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     implementation(libs.material)
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }

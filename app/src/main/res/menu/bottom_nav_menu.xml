@@ -10,7 +10,12 @@
         android:title="Cart"
         android:icon="@drawable/ic_orders"/>
     <item
+        android:id="@+id/FavoriteFragment"
+        android:title="Favorite"
+        android:icon="@drawable/ic_account"/>
+    <item
         android:id="@+id/AccountFragment"
         android:title="account"
         android:icon="@drawable/ic_account"/>
+
 </menu>

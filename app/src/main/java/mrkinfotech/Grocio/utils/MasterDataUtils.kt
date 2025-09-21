@@ -1,6 +1,10 @@
 package mrkinfotech.Grocio.utils
 
 import android.content.Context
+import android.graphics.Bitmap
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.ui.Datamodel.CategaryItem
 import mrkinfotech.Grocio.ui.Datamodel.ImageData
@@ -66,4 +70,7 @@ object MasterDataUtils {
         var  Citem = item.count()
         return Citem
     }
+
+
+
 }
