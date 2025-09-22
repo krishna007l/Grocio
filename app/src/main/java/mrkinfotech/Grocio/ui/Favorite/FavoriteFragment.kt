@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import mrkinfotech.Grocio.databinding.FragmentFavoriteBinding
@@ -25,6 +26,7 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var itemAdapter: ItemAdapter
+
     val cameraPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             if (granted) {
@@ -64,6 +66,8 @@ class FavoriteFragment : Fragment() {
         return binding.root
 
 
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,6 +78,8 @@ class FavoriteFragment : Fragment() {
             requireContext(), MasterDataUtils.productItem(requireContext()),
             ItemAdapter.OnClickListener { itemData, clickType -> })
         binding.recyclerViewFavourite.adapter = itemAdapter
+        val url = "https://www.example.com"
+        generateQRCode(url)
 
         binding.btnCamera.setOnClickListener {
             cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
@@ -104,31 +110,24 @@ class FavoriteFragment : Fragment() {
                 )
             }
             binding.idBtnGenerateQR.setOnClickListener {
-                if (TextUtils.isEmpty(
-                        binding.idEdt.getText().toString()
-                    )
-                ) {
-                    CustomDialog.showTostMessage(requireContext(),"create QR code")
-                }
-                else {
-                    generateQRCode(
-                        binding.idEdt.getText().toString()
-                    )
+                val text = binding.idEdt.text.toString().trim()
+                if (text.isNotEmpty()) {
+                    generateQRCode(text)
                 }
             }
 
         }
     }
-    fun generateQRCode(text: String) {
-        val barcodeEncoder = BarcodeEncoder()
+    private fun generateQRCode(text: String) {
         try {
-            // This method returns a Bitmap image of the
-            // encoded text with a height and width of 400
-            // pixels.
-            val bitmap: Bitmap = barcodeEncoder.encodeBitmap(text, BarcodeFormat.QR_CODE, 400, 400)
-            binding.imgQrCode.setImageBitmap(bitmap) // Sets the Bitmap to ImageView
+            val multiFormatWriter = MultiFormatWriter()
+            val bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 300, 300)
+            val barcodeEncoder = BarcodeEncoder()
+            val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
+            binding.imgQrCode.setImageBitmap(bitmap)
         } catch (e: WriterException) {
             e.printStackTrace()
         }
-}
+    }
+
 }

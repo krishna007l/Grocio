@@ -59,7 +59,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.bom)
+    implementation(platform(libs.firebase.bom))
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
@@ -77,4 +77,5 @@ dependencies {
     implementation(libs.material)
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.google.zxing:core:3.5.1")
 }
