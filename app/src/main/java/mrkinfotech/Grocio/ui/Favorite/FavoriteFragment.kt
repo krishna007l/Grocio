@@ -1,9 +1,12 @@
 package mrkinfotech.Grocio.ui.Account
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -27,12 +30,13 @@ class FavoriteFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var itemAdapter: ItemAdapter
 
-    val cameraPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-            if (granted) {
-                Toast.makeText(requireContext(), "✅ Camera granted", Toast.LENGTH_SHORT).show()
+    private val cameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                openCamera()   // Auto open camera after permission
             } else {
-                Toast.makeText(requireContext(), "❌ Camera denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "❌ camera granted", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     val locationPermissionLauncher =
@@ -78,7 +82,7 @@ class FavoriteFragment : Fragment() {
             requireContext(), MasterDataUtils.productItem(requireContext()),
             ItemAdapter.OnClickListener { itemData, clickType -> })
         binding.recyclerViewFavourite.adapter = itemAdapter
-        val url = "https://www.example.com"
+        val url = "https://youtube.com/shorts/JiQNOb9Q-NI?si=GYoUmrMGpme1m91C"
         generateQRCode(url)
 
         binding.btnCamera.setOnClickListener {
@@ -109,15 +113,26 @@ class FavoriteFragment : Fragment() {
                     )
                 )
             }
-            binding.idBtnGenerateQR.setOnClickListener {
-                val text = binding.idEdt.text.toString().trim()
-                if (text.isNotEmpty()) {
-                    generateQRCode(text)
-                }
-            }
+
 
         }
     }
+
+
+    // 2️⃣ Camera launcher
+    private val cameraLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val bitmap = result.data?.extras?.get("data") as Bitmap
+                binding.imgCamera.setImageBitmap(bitmap)
+            }
+        }
+    // 3️⃣ Open Camera
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraLauncher.launch(intent)
+    }
+
     private fun generateQRCode(text: String) {
         try {
             val multiFormatWriter = MultiFormatWriter()
