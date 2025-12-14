@@ -41,6 +41,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     buildToolsVersion = "35.0.0"

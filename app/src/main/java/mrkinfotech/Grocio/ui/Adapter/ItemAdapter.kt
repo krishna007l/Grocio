@@ -53,6 +53,7 @@ class ItemAdapter
                 .placeholder(R.drawable.logo)
                 .into(binding.productImage)
         }
+
     }
 }
 

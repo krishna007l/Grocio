@@ -35,7 +35,7 @@ class PreferenceHelper {
 
         fun isUserLoggedIn(context: Context): Boolean {
             val userEmail = getUserEmail(context)
-            return userEmail != null && userEmail != VERSION_NAME
+            return userEmail?.isNotEmpty() == true
         }
         fun getonbody(context: Context): Boolean{
             return getSharedPrefs(context).getBoolean(USER_LOGIN,false)
