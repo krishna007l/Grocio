@@ -1,25 +1,24 @@
 package mrkinfotech.Grocio.ui.Account
 
-import android.Manifest
-import android.graphics.Bitmap
-import android.os.Build
+
 import android.os.Bundle
-import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.WriterException
-import com.journeyapps.barcodescanner.BarcodeEncoder
 import mrkinfotech.Grocio.databinding.FragmentFavoriteBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
+import mrkinfotech.Grocio.ui.Api.RetrofitClient
+import mrkinfotech.Grocio.ui.Datamodel.Post
 import mrkinfotech.Grocio.utils.CustomDialog
 import mrkinfotech.Grocio.utils.MasterDataUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class FavoriteFragment : Fragment() {
 
@@ -27,36 +26,6 @@ class FavoriteFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var itemAdapter: ItemAdapter
 
-    val cameraPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-            if (granted) {
-                Toast.makeText(requireContext(), "✅ Camera granted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "❌ Camera denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    val locationPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            val fine = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
-            val coarse = permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
-
-            if (fine || coarse) {
-                Toast.makeText(requireContext(), "✅ Location granted", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                Toast.makeText(requireContext(), "❌ Location denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    val storagePermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            val granted =
-                permissions.values.any { it } // If at least one storage permission is granted
-            if (granted) {
-                Toast.makeText(requireContext(), "✅ Storage granted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "❌ Storage denied", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -64,9 +33,6 @@ class FavoriteFragment : Fragment() {
 
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
-
-
-
 
     }
 
@@ -78,56 +44,66 @@ class FavoriteFragment : Fragment() {
             requireContext(), MasterDataUtils.productItem(requireContext()),
             ItemAdapter.OnClickListener { itemData, clickType -> })
         binding.recyclerViewFavourite.adapter = itemAdapter
-        val url = "https://www.example.com"
-        generateQRCode(url)
 
-        binding.btnCamera.setOnClickListener {
-            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
-        }
-        binding.btnStorage.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                storagePermissionLauncher.launch(
-                    arrayOf(
-                        Manifest.permission.READ_MEDIA_IMAGES,
-                        Manifest.permission.READ_MEDIA_VIDEO,
-                        Manifest.permission.READ_MEDIA_AUDIO
-                    )
-                )
-            } else {
-                storagePermissionLauncher.launch(
-                    arrayOf(
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    )
-                )
-            }
-            binding.btnLocation.setOnClickListener {
-                locationPermissionLauncher.launch(
-                    arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    )
-                )
-            }
-            binding.idBtnGenerateQR.setOnClickListener {
-                val text = binding.idEdt.text.toString().trim()
-                if (text.isNotEmpty()) {
-                    generateQRCode(text)
-                }
-            }
+        binding.btnCamera.setOnClickListener(View.OnClickListener{
+            requstcamera.launch(android.Manifest.permission.CAMERA)
+        })
 
-        }
+        binding.btnLocation.setOnClickListener(View.OnClickListener{
+            requstlocation.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            requstlocation.launch(android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            requstlocation.launch(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+        })
+
+        binding.btnStorage.setOnClickListener(View.OnClickListener{
+            requststorage.launch(android.Manifest.permission.READ_MEDIA_IMAGES)
+            requststorage.launch(android.Manifest.permission.READ_MEDIA_VIDEO)
+            requststorage.launch(android.Manifest.permission.READ_MEDIA_AUDIO)
+        })
     }
-    private fun generateQRCode(text: String) {
-        try {
-            val multiFormatWriter = MultiFormatWriter()
-            val bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 300, 300)
-            val barcodeEncoder = BarcodeEncoder()
-            val bitmap: Bitmap = barcodeEncoder.createBitmap(bitMatrix)
-            binding.imgQrCode.setImageBitmap(bitmap)
-        } catch (e: WriterException) {
-            e.printStackTrace()
+    val requstcamera = registerForActivityResult(ActivityResultContracts.RequestPermission(),{
+        if (it){
+            CustomDialog.showTostMessage(requireContext(),"permission granted")
+        }else{
+            CustomDialog.showTostMessage(requireContext(),"permission not granted")
         }
+    })
+
+    val requstlocation = registerForActivityResult(ActivityResultContracts.RequestPermission(),{
+        if (it){
+            CustomDialog.showTostMessage(requireContext(),"permission granted")
+        }else{
+            CustomDialog.showTostMessage(requireContext(),"permission not granted")
+        }
+    })
+
+    val requststorage = registerForActivityResult(ActivityResultContracts.RequestPermission(),{
+        if (it){
+            CustomDialog.showTostMessage(requireContext(),"permission granted")
+        }else{
+            CustomDialog.showTostMessage(requireContext(),"permission not granted")
+        }
+    })
+    private fun getPosts() {
+        RetrofitClient.apiService.getPosts()
+            .enqueue(object : Callback<List<Post>> {
+
+                override fun onResponse(
+                    call: Call<List<Post>>,
+                    response: Response<List<Post>>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.forEach {
+                            Log.d("API_DATA", it.Value)
+                        }
+                    }
+                }
+
+                 override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                    Log.e("API_ERROR", t.message.toString())
+                }
+            })
     }
 
 }
+
