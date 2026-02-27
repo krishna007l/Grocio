@@ -2,6 +2,7 @@ package mrkinfotech.Grocio.ui.Account
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import mrkinfotech.Grocio.databinding.FragmentFavoriteBinding
 import mrkinfotech.Grocio.ui.Adapter.ItemAdapter
+import mrkinfotech.Grocio.ui.Api.RetrofitClient
+import mrkinfotech.Grocio.ui.Datamodel.Post
 import mrkinfotech.Grocio.utils.CustomDialog
 import mrkinfotech.Grocio.utils.MasterDataUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class FavoriteFragment : Fragment() {
 
@@ -77,7 +84,26 @@ class FavoriteFragment : Fragment() {
             CustomDialog.showTostMessage(requireContext(),"permission not granted")
         }
     })
+    private fun getPosts() {
+        RetrofitClient.apiService.getPosts()
+            .enqueue(object : Callback<List<Post>> {
 
+                override fun onResponse(
+                    call: Call<List<Post>>,
+                    response: Response<List<Post>>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.forEach {
+                            Log.d("API_DATA", it.Value)
+                        }
+                    }
+                }
+
+                 override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                    Log.e("API_ERROR", t.message.toString())
+                }
+            })
     }
 
+}
 
