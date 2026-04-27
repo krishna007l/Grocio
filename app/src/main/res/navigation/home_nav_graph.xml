@@ -8,19 +8,51 @@
     <fragment
         android:id="@+id/HomeFragment"
         android:name="mrkinfotech.Grocio.ui.home.HomeFragment"
-        android:label="home"
-        tools:layout="@layout/fragment_home"/>
+        android:label="@string/home_lable"
+        tools:layout="@layout/fragment_first"/>
 
     <fragment
-        android:id="@+id/CategaryFragment"
-        android:name="mrkinfotech.Grocio.ui.Account.CategaryFragment"
-        android:label="categary"
-        tools:layout="@layout/fragment_categary"/>
+        android:id="@+id/CartFragment"
+        android:name="mrkinfotech.Grocio.ui.cart.CartFragment"
+        android:label="@string/str_cart"
+        tools:layout="@layout/fragment_cart"/>
+
+    <fragment
+        android:id="@+id/LikeFragment"
+        android:name="mrkinfotech.Grocio.ui.like.LikeFragment"
+        android:label="@string/str_like"
+        tools:layout="@layout/fragment_like"/>
 
     <fragment
         android:id="@+id/AccountFragment"
-        android:name="mrkinfotech.Grocio.ui.Account.AccountFragment"
-        android:label="Account"
-        tools:layout="@layout/fragment_account"/>
+        android:name="mrkinfotech.Grocio.ui.account.AccountFragment"
+        android:label="@string/str_account"
+        tools:layout="@layout/fragment_account">
 
+        <action
+            android:id="@+id/action_AccountFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+
+        <action
+            android:id="@+id/action_AccountFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="mrkinfotech.Grocio.ui.account.ProfileFragment"
+        android:label="@string/str_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="mrkinfotech.Grocio.ui.account.SettingsFragment"
+        android:label="@string/str_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/ProductDetailFragment"
+        android:name="mrkinfotech.Grocio.ui.product.ProductDetailFragment"
+        android:label="@string/str_product_details"
+        tools:layout="@layout/fragment_product_detail" />
 </navigation>

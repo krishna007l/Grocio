@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "655990065070-ie4kcj2dg1n5f2ikmdts327glqts7g8v.apps.googleusercontent.com",
+          "client_id": "655990065070-si6tdssacn0tpjovkt4te106fd8vofns.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "mrkinfotech.Grocio",
-            "certificate_hash": "99c014acd675faad5695605dc5f4871e50acb890"
+            "certificate_hash": "53ed3f40bf56378a936d3ac72bb0b721bda7e1dd"
           }
         },
         {

@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="black">#201711</color>
     <color name="white">#FFFFFF</color>
-    <color name="color_primary">#FF7622</color>
-    <color name="orange">#fab327</color>
-    <color name="blue">#0A609D</color>
-    <color name="red">#C71313</color>
-    <color name="brown">#7A6464</color>
+    <color name="color_primary">#F47C2A</color>
+    <color name="orange">#F6A24C</color>
+    <color name="blue">#2E6CE6</color>
+    <color name="red">#C94B42</color>
+    <color name="brown">#8C6C57</color>
     <color name="RGB">#FF0000</color>
-    <color name="color_black">#FF000000</color>
-    <color name="color_white">#FFFFFFFF</color>
-    <color name="color_yellow">#FFFF00</color>
-    <color name="color_light_gray">#7C7C7C</color>
+    <color name="color_black">#201711</color>
+    <color name="color_white">#000000</color>
+    <color name="color_yellow">#F6D36B</color>
+    <color name="color_light_gray">#7C7269</color>
+    <color name="color_app_bg">#FFF8F1</color>
+    <color name="color_green">#3F9B5B</color>
 
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_surface_alt">#FFF1E4</color>
+    <color name="color_surface_soft">#FFF7EF</color>
+    <color name="color_border">#E9DCCF</color>
+    <color name="color_divider">#F0E5DA</color>
+    <color name="color_text_primary">#201711</color>
+    <color name="color_text_secondary">#73675D</color>
+    <color name="color_chip_bg">#FDE8D3</color>
+    <color name="color_input_bg">#FFFCF9</color>
+    <color name="color_bottom_nav">#FFFCF8</color>
+    <color name="color_primary_dark">#D96414</color>
+    <color name="color_on_surface_muted">#998D83</color>
 </resources>

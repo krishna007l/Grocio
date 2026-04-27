@@ -1,6 +1,5 @@
 package mrkinfotech.Grocio.ui.login
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import mrkinfotech.Grocio.databinding.ActivityLoginBinding
@@ -16,6 +15,4 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
     }
-
-
 }

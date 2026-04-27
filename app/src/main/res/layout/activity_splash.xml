@@ -5,16 +5,253 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
+    android:background="@drawable/bg_splash_screen"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingHorizontal="@dimen/margin_20"
+    android:paddingTop="@dimen/margin_24"
+    android:paddingBottom="@dimen/margin_24"
     tools:context=".ui.base.SplashActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="@dimen/default_view_pager_image_size_212"
-        android:layout_height="@dimen/default_view_pager_image_size_212"
-        android:src="@drawable/slogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <View
+        android:id="@+id/viewSplashOrbTop"
+        android:layout_width="236dp"
+        android:layout_height="236dp"
+        android:background="@drawable/bg_splash_orb_soft"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewSplashOrbMiddle"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:background="@drawable/bg_splash_orb_warm"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toStartOf="@id/cardSplash"
+        app:layout_constraintTop_toTopOf="@id/cardSplash" />
+
+    <View
+        android:id="@+id/viewSplashOrbBottom"
+        android:layout_width="172dp"
+        android:layout_height="172dp"
+        android:background="@drawable/bg_splash_orb_soft"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSplash"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="#1FFFFFFF"
+        app:cardCornerRadius="@dimen/hero_corner_radius"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/textSplashTapHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.58"
+        app:strokeColor="#33FFFFFF"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/splash_card_padding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textSplashBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_splash_chip"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingVertical="@dimen/padding_8"
+                android:text="@string/str_brand_badge"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_12" />
+
+            <FrameLayout
+                android:id="@+id/layoutSplashLogoStage"
+                android:layout_width="@dimen/splash_logo_stage_size"
+                android:layout_height="@dimen/splash_logo_stage_size"
+                android:layout_marginTop="@dimen/margin_24">
+
+                <View
+                    android:id="@+id/viewSplashHalo"
+                    android:layout_width="@dimen/splash_halo_size"
+                    android:layout_height="@dimen/splash_halo_size"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_splash_orb_soft"
+                    android:importantForAccessibility="no" />
+
+                <View
+                    android:id="@+id/viewSplashRing"
+                    android:layout_width="@dimen/splash_ring_size"
+                    android:layout_height="@dimen/splash_ring_size"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_splash_ring"
+                    android:importantForAccessibility="no" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textSplashChipFast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:background="@drawable/bg_splash_chip"
+                    android:fontFamily="@font/gentiumbookplus_bold"
+                    android:paddingHorizontal="@dimen/padding_12"
+                    android:paddingVertical="@dimen/padding_6"
+                    android:text="@string/str_splash_chip_fast"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/font_12" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textSplashChipDaily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:background="@drawable/bg_splash_chip"
+                    android:fontFamily="@font/gentiumbookplus_bold"
+                    android:paddingHorizontal="@dimen/padding_12"
+                    android:paddingVertical="@dimen/padding_6"
+                    android:text="@string/str_splash_chip_daily"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/font_12" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textSplashChipLocal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:background="@drawable/bg_splash_chip"
+                    android:fontFamily="@font/gentiumbookplus_bold"
+                    android:paddingHorizontal="@dimen/padding_12"
+                    android:paddingVertical="@dimen/padding_6"
+                    android:text="@string/str_splash_chip_local"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/font_12" />
+
+                <FrameLayout
+                    android:id="@+id/layoutSplashLogoPlate"
+                    android:layout_width="@dimen/splash_logo_plate_size"
+                    android:layout_height="@dimen/splash_logo_plate_size"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_splash_logo_plate"
+                    android:elevation="4dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageSplashLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/padding_24"
+                        android:src="@drawable/slogo" />
+                </FrameLayout>
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textSplashTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:text="@string/str_splash_hero_title"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_36" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textSplashSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/str_splash_hero_subtitle"
+                android:textColor="#FFF8F1"
+                android:textSize="@dimen/font_14" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textSplashStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:letterSpacing="0.12"
+                android:text="@string/str_splash_loading_label"
+                android:textAllCaps="true"
+                android:textColor="#FFF5E8"
+                android:textSize="@dimen/font_11" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textSplashStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:text="@string/str_splash_status_one"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_20" />
+
+            <FrameLayout
+                android:id="@+id/layoutSplashProgressTrack"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/margin_16"
+                android:background="@drawable/bg_splash_progress_track">
+
+                <View
+                    android:id="@+id/viewSplashProgressFill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_splash_progress_fill" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/viewSplashPulseDot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/bg_splash_orb_warm"
+                    android:importantForAccessibility="no" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textSplashFooter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:fontFamily="@font/gentiumbookplus_regular"
+                    android:text="@string/str_splash_footer"
+                    android:textColor="#FFF4E8"
+                    android:textSize="@dimen/font_14" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textSplashTapHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:fontFamily="@font/gentiumbookplus_bold"
+        android:text="@string/str_splash_tap_hint"
+        android:textColor="#FFF8EE"
+        android:textSize="@dimen/font_14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

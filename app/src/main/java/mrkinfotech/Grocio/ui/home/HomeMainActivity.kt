@@ -11,18 +11,19 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import mrkinfotech.Grocio.R
-import mrkinfotech.Grocio.databinding.ActivityHomeBinding
-import mrkinfotech.Grocio.ui.Account.AccountFragment
+import mrkinfotech.Grocio.databinding.ActivityMainBinding
 
-class HomeMainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHomeBinding
+
+class   HomeMainActivity : AppCompatActivity() {
+
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -34,20 +35,29 @@ class HomeMainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-
-                R.id.CategaryFragment,
                 R.id.HomeFragment,
+                R.id.CartFragment,
+                R.id.LikeFragment,
                 R.id.AccountFragment
             ),
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController(navController)
-
     }
 
     fun bottomNavigationViewGone(){
         binding.bottomNavigationView.visibility = View.GONE
+    }
+
+    fun bottomNavigationViewVisible() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    fun openCartScreen() {
+        if (binding.bottomNavigationView.selectedItemId != R.id.CartFragment) {
+            binding.bottomNavigationView.selectedItemId = R.id.CartFragment
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

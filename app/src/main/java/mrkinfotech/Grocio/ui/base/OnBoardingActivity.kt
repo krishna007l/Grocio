@@ -3,10 +3,10 @@ package mrkinfotech.Grocio.ui.base
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.shopify.utils.PreferenceHelper
 import mrkinfotech.Grocio.databinding.ActivityOnBoardingBinding
-
 import mrkinfotech.Grocio.ui.login.LoginActivity
+import mrkinfotech.Grocio.utils.PreferenceHelper
+
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -19,7 +19,8 @@ class OnBoardingActivity : AppCompatActivity() {
 
         binding.buttonGetStarted.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            PreferenceHelper.setonbody(this,true)
+            PreferenceHelper.setOnBoardShow(this,true)
+            finish()
         }
     }
 }

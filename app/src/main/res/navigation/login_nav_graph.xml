@@ -8,17 +8,13 @@
     <fragment
         android:id="@+id/LoginFragment"
         android:name="mrkinfotech.Grocio.ui.login.LoginFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_login">
-
-    </fragment>
+        android:label="@string/home_lable"
+        tools:layout="@layout/fragment_login"/>
 
     <fragment
         android:id="@+id/SignUpFragment"
         android:name="mrkinfotech.Grocio.ui.login.SignUpFragment"
-        android:label="@string/str_signin"
-        tools:layout="@layout/fragment_sing_up">
-
-    </fragment>
+        android:label="@string/str_signup"
+        tools:layout="@layout/fragment_sign_up"/>
 
 </navigation>

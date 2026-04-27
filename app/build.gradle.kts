@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "mrkinfotech.Grocio"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -41,32 +41,33 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.glide)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
-    implementation(libs.firebase.database)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.bom)
+    implementation(libs.firebase.firestore)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.glide)
+    implementation(libs.lottie)
+    implementation(libs.play.services.auth)
+    implementation(libs.play.services.base)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.ripplebackground)
+    implementation(libs.androidx.viewpager2)
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.viewpager2)
-    implementation("androidx.credentials:credentials:1.3.0")
-    implementation ("com.google.android.gms:play-services-auth:21.0.0")
-    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
-    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.50")
-    implementation ("com.google.android.material:material:1.11.0")
-    implementation(libs.material)
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

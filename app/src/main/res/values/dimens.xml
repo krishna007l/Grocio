@@ -52,24 +52,22 @@
     <dimen name="run_button_default_width">64dp</dimen>
 
     <dimen name="text_timer_width">96dp</dimen>
-
     <dimen name="run_button_default_height">54dp</dimen>
     <dimen name="run_textView_size">48dp</dimen>
 
-    <dimen name="player_icon_in_list">64dp</dimen>
-
-
     <dimen name="default_view_pager_image_size_212">212dp</dimen>
     <dimen name="default_view_pager_image_size">188dp</dimen>
-    <dimen name="default_image_size">144dp</dimen>
-    <dimen name="default_image_size_medium">96dp</dimen>
+
+    <dimen name="default_image_size_144dp">144dp</dimen>
+    <dimen name="default_image_size_96dp">96dp</dimen>
     <dimen name="default_image_size_74dp">74dp</dimen>
     <dimen name="default_image_size_64dp">64dp</dimen>
     <dimen name="default_image_size_54dp">54dp</dimen>
-    <dimen name="default_image_size_small">48dp</dimen>
+    <dimen name="default_image_size_48dp">48dp</dimen>
     <dimen name="default_image_size_32dp">32dp</dimen>
     <dimen name="default_image_size_24dp">24dp</dimen>
-    <dimen name="default_image_icon_small">18dp</dimen>
+    <dimen name="default_image_size_18dp">18dp</dimen>
+
     <dimen name="progress_bar_height">4dp</dimen>
 
     <dimen name="default_card_radius">16dp</dimen>
@@ -83,6 +81,10 @@
     <dimen name="card_radius_14dp">14dp</dimen>
     <dimen name="card_radius_20dp">20dp</dimen>
 
+    <dimen name="font_70">70sp</dimen>
+    <dimen name="font_60">60sp</dimen>
+    <dimen name="font_50">50sp</dimen>
+    <dimen name="font_40">40sp</dimen>
     <dimen name="font_36">36sp</dimen>
     <dimen name="font_28">28sp</dimen>
     <dimen name="font_24">24sp</dimen>
@@ -93,6 +95,7 @@
     <dimen name="font_12">12sp</dimen>
     <dimen name="font_11">11sp</dimen>
     <dimen name="font_10">10sp</dimen>
+
     <dimen name="default_cardView_height">100dp</dimen>
     <dimen name="small_coin_size_104dp">104dp</dimen>
     <dimen name="medium_coin_size_124dp">124dp</dimen>
@@ -120,5 +123,27 @@
     <dimen name="icon_direction_size_28">28dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_6">6dp</dimen>
+
+    <dimen name="screen_horizontal_padding">20dp</dimen>
+    <dimen name="screen_vertical_padding">24dp</dimen>
+    <dimen name="section_spacing">20dp</dimen>
+    <dimen name="compact_spacing">12dp</dimen>
+    <dimen name="hero_corner_radius">28dp</dimen>
+    <dimen name="surface_corner_radius">22dp</dimen>
+    <dimen name="button_corner_radius">18dp</dimen>
+    <dimen name="input_corner_radius">18dp</dimen>
+    <dimen name="auth_field_height">52dp</dimen>
+    <dimen name="product_card_width">172dp</dimen>
+    <dimen name="product_image_height">112dp</dimen>
+    <dimen name="bottom_nav_height">68dp</dimen>
+    <dimen name="splash_logo_size">152dp</dimen>
+    <dimen name="splash_card_padding">28dp</dimen>
+    <dimen name="splash_logo_stage_size">220dp</dimen>
+    <dimen name="splash_logo_plate_size">120dp</dimen>
+    <dimen name="splash_halo_size">176dp</dimen>
+    <dimen name="splash_ring_size">152dp</dimen>
+    <dimen name="onboarding_art_height">320dp</dimen>
+    <dimen name="profile_avatar_size">76dp</dimen>
+    <dimen name="list_row_icon_size">20dp</dimen>
 
 </resources>

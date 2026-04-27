@@ -5,27 +5,402 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_screen"
     tools:context=".ui.base.OnBoardingActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageOnBoard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/on_image" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollOnboarding"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/margin_12"
+        app:layout_constraintBottom_toTopOf="@id/buttonGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/screen_vertical_padding"
+            android:paddingBottom="@dimen/margin_20">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_splash_chip"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingVertical="@dimen/padding_8"
+                android:text="@string/str_brand_badge"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_12" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textOnboardingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:text="@string/str_welcome_to_our_store"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_36" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textOnboardingDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:fontFamily="@font/gentiumbookplus_regular"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/str_on_board_description"
+                android:textColor="#FFF4E8"
+                android:textSize="@dimen/font_14" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOnboardingPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_24"
+                app:cardBackgroundColor="#1AFFFFFF"
+                app:cardCornerRadius="@dimen/hero_corner_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="#33FFFFFF"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_24">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gentiumbookplus_bold"
+                        android:text="@string/str_onboarding_panel_title"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/font_24" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:fontFamily="@font/gentiumbookplus_regular"
+                        android:lineSpacingExtra="4dp"
+                        android:text="@string/str_onboarding_panel_copy"
+                        android:textColor="#FFF2E6"
+                        android:textSize="@dimen/font_14" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_splash_chip"
+                            android:fontFamily="@font/gentiumbookplus_bold"
+                            android:paddingHorizontal="@dimen/padding_12"
+                            android:paddingVertical="@dimen/padding_6"
+                            android:text="@string/str_onboarding_chip_fruits"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/font_12" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:background="@drawable/bg_splash_chip"
+                            android:fontFamily="@font/gentiumbookplus_bold"
+                            android:paddingHorizontal="@dimen/padding_12"
+                            android:paddingVertical="@dimen/padding_6"
+                            android:text="@string/str_onboarding_chip_vegetables"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/font_12" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_splash_chip"
+                            android:fontFamily="@font/gentiumbookplus_bold"
+                            android:paddingHorizontal="@dimen/padding_12"
+                            android:paddingVertical="@dimen/padding_6"
+                            android:text="@string/str_onboarding_chip_dairy"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/font_12" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:background="@drawable/bg_splash_chip"
+                            android:fontFamily="@font/gentiumbookplus_bold"
+                            android:paddingHorizontal="@dimen/padding_12"
+                            android:paddingVertical="@dimen/padding_6"
+                            android:text="@string/str_onboarding_chip_snacks"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/font_12" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="#18FFFFFF"
+                            app:cardCornerRadius="@dimen/surface_corner_radius"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#24FFFFFF"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="@dimen/padding_16">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gentiumbookplus_bold"
+                                    android:text="@string/str_onboarding_stat_one_title"
+                                    android:textColor="@color/color_white"
+                                    android:textSize="@dimen/font_16" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_6"
+                                    android:fontFamily="@font/gentiumbookplus_regular"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="@string/str_onboarding_stat_one_copy"
+                                    android:textColor="#FFF2E6"
+                                    android:textSize="@dimen/font_12" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <Space
+                            android:layout_width="@dimen/margin_12"
+                            android:layout_height="1dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="#18FFFFFF"
+                            app:cardCornerRadius="@dimen/surface_corner_radius"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#24FFFFFF"
+                            app:strokeWidth="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:padding="@dimen/padding_16">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gentiumbookplus_bold"
+                                    android:text="@string/str_onboarding_stat_two_title"
+                                    android:textColor="@color/color_white"
+                                    android:textSize="@dimen/font_16" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/margin_6"
+                                    android:fontFamily="@font/gentiumbookplus_regular"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="@string/str_onboarding_stat_two_copy"
+                                    android:textColor="#FFF2E6"
+                                    android:textSize="@dimen/font_12" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:background="@drawable/bg_onboarding_feature_card"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_16">
+
+                        <FrameLayout
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_onboarding_icon_badge">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_cake"
+                                android:tint="@color/color_white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_16"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gentiumbookplus_bold"
+                                android:text="@string/str_onboarding_feature_one_title"
+                                android:textColor="@color/color_white"
+                                android:textSize="@dimen/font_16" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_4"
+                                android:fontFamily="@font/gentiumbookplus_regular"
+                                android:lineSpacingExtra="2dp"
+                                android:text="@string/str_onboarding_feature_one_copy"
+                                android:textColor="#FFF2E6"
+                                android:textSize="@dimen/font_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:background="@drawable/bg_onboarding_feature_card"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_16">
+
+                        <FrameLayout
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_onboarding_icon_badge">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_cart"
+                                android:tint="@color/color_white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_16"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gentiumbookplus_bold"
+                                android:text="@string/str_onboarding_feature_two_title"
+                                android:textColor="@color/color_white"
+                                android:textSize="@dimen/font_16" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_4"
+                                android:fontFamily="@font/gentiumbookplus_regular"
+                                android:lineSpacingExtra="2dp"
+                                android:text="@string/str_onboarding_feature_two_copy"
+                                android:textColor="#FFF2E6"
+                                android:textSize="@dimen/font_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:background="@drawable/bg_onboarding_feature_card"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/padding_16">
+
+                        <FrameLayout
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_onboarding_icon_badge">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_pin"
+                                android:tint="@color/color_white" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_16"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gentiumbookplus_bold"
+                                android:text="@string/str_onboarding_feature_three_title"
+                                android:textColor="@color/color_white"
+                                android:textSize="@dimen/font_16" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_4"
+                                android:fontFamily="@font/gentiumbookplus_regular"
+                                android:lineSpacingExtra="2dp"
+                                android:text="@string/str_onboarding_feature_three_copy"
+                                android:textColor="#FFF2E6"
+                                android:textSize="@dimen/font_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonGetStarted"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_button"
-        android:layout_marginHorizontal="75dp"
-        android:background="@drawable/curve"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+        android:layout_marginBottom="@dimen/screen_vertical_padding"
+        android:background="@drawable/bg_splash_button_outline"
         android:fontFamily="@font/gentiumbookplus_bold"
         android:text="@string/str_get_started"
-        android:textSize="@dimen/font_24"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"
-        />
-
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
