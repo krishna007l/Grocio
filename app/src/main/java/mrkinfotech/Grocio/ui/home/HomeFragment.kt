@@ -1,17 +1,20 @@
 package mrkinfotech.Grocio.ui.home
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import mrkinfotech.Grocio.R
-import mrkinfotech.Grocio.data.remote.RetrofitProvider
-import mrkinfotech.Grocio.data.repository.GroceryRepository
 import mrkinfotech.Grocio.databinding.FragmentFirstBinding
+import mrkinfotech.Grocio.ui.data.ProductUiModel
+import mrkinfotech.Grocio.ui.home.HomeCategoryUiModel
 import mrkinfotech.Grocio.utils.CustomDialog
 import mrkinfotech.Grocio.utils.MasterDataUtils
 import mrkinfotech.Grocio.utils.PreferenceHelper
@@ -21,35 +24,37 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
-    private val groceryAdapter by lazy {
-        GroceryItemAdapter(
-            onItemClicked = { item ->
-                openItemSheet(item)
-            },
-            onAddToCartClicked = { item ->
-                openItemSheet(item)
-            },
-            onLikeClicked = { item ->
-                val isLiked = viewModel.toggleLike(requireContext(), item)
-                CustomDialog.showToast(
-                    requireContext(),
-                    if (isLiked) getString(R.string.str_home_item_liked)
-                    else getString(R.string.str_home_item_unliked)
-                )
-            }
+    private val categoryAdapter by lazy {
+        CategoryShortcutAdapter { category -> onCategorySelected(category) }
+    }
+
+    private val productAdapter by lazy {
+        ProductListAdapter(
+            onAddToCartClicked = { item -> addToCart(item) }
         )
     }
 
-    private val viewModel: HomeViewModel by lazy {
-        val repository = GroceryRepository(RetrofitProvider.groceryApiService)
-        ViewModelProvider(
-            this,
-            HomeViewModelFactory(repository)
-        )[HomeViewModel::class.java]
+    private val bannerAdapter by lazy { BannerSliderAdapter() }
+
+    private var selectedCategoryKey: String = CATEGORY_ALL
+    private val cartStateListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == CART_PREF_KEY || key == CART_LEGACY_PREF_KEY) {
+            syncCartState()
+        }
+        if (
+            key == PROFILE_NAME_KEY ||
+            key == PROFILE_EMAIL_KEY ||
+            key == PROFILE_ADDRESS_KEY ||
+            key == PROFILE_IMAGE_KEY
+        ) {
+            syncLocation()
+        }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,96 +62,132 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        bindActions()
-        observeState()
-        viewModel.refreshLocalState(requireContext())
+
+        setupLocationHeader()
+        setupCategoryAndProductLists()
+        setupBannerSlider()
+        setupActions()
+        renderProducts()
+        registerCartListener()
     }
 
     override fun onResume() {
         super.onResume()
-        if (isAdded) {
-            viewModel.refreshLocalState(requireContext())
-        }
+        syncCartState()
     }
 
-    private fun setupRecyclerView() {
-        val spanCount = when (resources.configuration.screenWidthDp) {
-            in 600..839 -> 3
-            in 840..Int.MAX_VALUE -> 4
-            else -> 2
+    private fun setupCategoryAndProductLists() {
+        binding.recyclerViewCategories.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = categoryAdapter
+            setHasFixedSize(true)
         }
 
         binding.recyclerViewGroceries.apply {
-            layoutManager = GridLayoutManager(requireContext(), spanCount)
-            adapter = groceryAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = productAdapter
             setHasFixedSize(true)
         }
+
+        categoryAdapter.submitList(MasterDataUtils.getHomeCategoryShortcuts(requireContext()))
     }
 
-    private fun bindActions() {
-        binding.buttonRetry.setOnClickListener {
-            viewModel.loadGroceries()
+    private fun setupActions() {
+        binding.cardHomeLocation.setOnClickListener {
+            findNavController().navigate(R.id.ProfileFragment)
+        }
+
+        binding.cardSearchShortcut.setOnClickListener {
+            findNavController().navigate(R.id.SearchFragment)
         }
     }
 
-    private fun observeState() {
-        viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            render(state)
-        }
+    private fun setupLocationHeader() {
+        syncLocation()
     }
 
-    private fun render(state: HomeUiState) {
-        if (state.groceries.isNotEmpty()) {
-            PreferenceHelper.saveProductSnapshots(
-                requireContext(),
-                state.groceries.map(MasterDataUtils::toCommonItem)
-            )
+    private fun setupBannerSlider() {
+        binding.viewPagerBannerSlider.apply {
+            adapter = bannerAdapter
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 3
+
+            val transformer = CompositePageTransformer().apply {
+                addTransformer(MarginPageTransformer(resources.getDimensionPixelSize(R.dimen.margin_12)))
+                addTransformer { page, position ->
+                    val absPosition = kotlin.math.abs(position)
+                    val scale = 0.94f + (1f - absPosition).coerceAtLeast(0f) * 0.06f
+                    page.scaleY = scale
+                }
+            }
+            setPageTransformer(transformer)
         }
+        bannerAdapter.submitList(MasterDataUtils.getBannerCards())
+    }
 
-        groceryAdapter.submitList(state.groceries)
-        groceryAdapter.updateInteractionState(
-            state.cartItemQuantities.keys,
-            PreferenceHelper.getSavedItems(requireContext())
-        )
+    private fun renderProducts() {
+        val products = filterProducts()
+        categoryAdapter.updateSelection(selectedCategoryKey)
+        productAdapter.submitList(products)
+        syncCartState()
+        syncLocation()
+    }
 
-        val hasItems = state.groceries.isNotEmpty()
-        val hasError = !state.errorMessage.isNullOrBlank()
+    private fun filterProducts(): List<ProductUiModel> {
+        return MasterDataUtils.getProductsByCategory(selectedCategoryKey)
+    }
 
-        binding.layoutLoadingState.isVisible = state.isLoading
-        binding.recyclerViewGroceries.isVisible = hasItems && !state.isLoading
-        binding.layoutErrorState.isVisible = !state.isLoading && (hasError || !hasItems)
-        binding.buttonRetry.isVisible = hasError
+    private fun addToCart(item: ProductUiModel) {
+        PreferenceHelper.addCartItem(requireContext(), item.productName)
+        CustomDialog.showToast(requireContext(), getString(R.string.str_item_added_to_cart))
+        syncCartState()
+    }
 
-        binding.textViewStatus.text = when {
-            state.isLoading -> getString(R.string.str_home_loading_items)
-            hasItems -> getString(R.string.str_home_loaded_count, state.groceries.size)
-            hasError -> getString(R.string.str_home_error_badge)
-            else -> getString(R.string.str_home_empty_badge)
-        }
-
-        binding.textViewErrorTitle.text = if (hasError) {
-            getString(R.string.str_home_error_title)
+    private fun onCategorySelected(category: HomeCategoryUiModel) {
+        selectedCategoryKey = if (selectedCategoryKey == category.categoryKey) {
+            CATEGORY_ALL
         } else {
-            getString(R.string.str_home_empty_title)
+            category.categoryKey
         }
-        binding.textViewErrorMessage.text = if (hasError) {
-            state.errorMessage
-        } else {
-            getString(R.string.str_home_empty_message)
+        renderProducts()
+    }
+
+    private fun syncCartState() {
+        if (!isAdded || _binding == null) return
+        productAdapter.updateCartState(PreferenceHelper.getCartItems(requireContext()))
+    }
+
+    private fun syncLocation() {
+        if (!isAdded || _binding == null) return
+        val profile = PreferenceHelper.getProfileData(requireContext())
+        binding.textHomeLocationValue.text = profile.address.ifBlank {
+            getString(R.string.str_home_location_default)
         }
     }
 
-    private fun openItemSheet(item: mrkinfotech.Grocio.data.model.GroceryItem) {
-        if (childFragmentManager.findFragmentByTag(GroceryItemBottomSheetFragment.TAG) != null) {
-            return
-        }
-        GroceryItemBottomSheetFragment.show(this, item)
+    private fun registerCartListener() {
+        PreferenceHelper.getSharedPrefs(requireContext())
+            .registerOnSharedPreferenceChangeListener(cartStateListener)
     }
 
     override fun onDestroyView() {
+        if (context != null) {
+            PreferenceHelper.getSharedPrefs(requireContext())
+                .unregisterOnSharedPreferenceChangeListener(cartStateListener)
+        }
         binding.recyclerViewGroceries.adapter = null
         _binding = null
         super.onDestroyView()
+    }
+
+    companion object {
+        private const val CATEGORY_ALL = "all"
+        private const val CART_PREF_KEY = "cart_item_quantities"
+        private const val CART_LEGACY_PREF_KEY = "cart_items"
+        private const val PROFILE_NAME_KEY = "UserName"
+        private const val PROFILE_EMAIL_KEY = "UserEmail"
+        private const val PROFILE_ADDRESS_KEY = "last_address"
+        private const val PROFILE_IMAGE_KEY = "profileImage"
     }
 }

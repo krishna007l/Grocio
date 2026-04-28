@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import mrkinfotech.Grocio.R
@@ -46,6 +47,7 @@ object CustomDialog {
         editTextAddress.setText(currentAddress)
         editTextAddress.visibility = View.VISIBLE
         buttonConfirmLocation.visibility = View.VISIBLE
+        buttonAddressFromMap.isVisible = selectAddress != null
 
         buttonAddressFromMap.setOnClickListener {
             selectAddress?.onClick(it)

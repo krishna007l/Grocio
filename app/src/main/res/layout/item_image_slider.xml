@@ -1,19 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+    android:layout_marginHorizontal="@dimen/padding_4"
     app:cardBackgroundColor="@color/color_surface"
     app:cardCornerRadius="@dimen/hero_corner_radius"
     app:cardElevation="0dp"
-    app:strokeColor="@color/color_border"
+    app:strokeColor="@color/color_blinkit_border"
     app:strokeWidth="1dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/grociologo" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_banner_overlay" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBannerBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/color_blinkit_yellow"
+                app:cardCornerRadius="@dimen/button_corner_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/color_blinkit_border"
+                app:strokeWidth="1dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textBannerBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gentiumbookplus_bold"
+                    android:paddingHorizontal="@dimen/padding_12"
+                    android:paddingVertical="@dimen/padding_4"
+                    android:textColor="@color/color_blinkit_black"
+                    android:textSize="@dimen/font_12"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textBannerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:fontFamily="@font/gentiumbookplus_bold"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_22"
+                android:maxLines="2"
+                tools:text="Fruits &amp; vegetables" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textBannerSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="@font/gentiumbookplus_regular"
+                android:textColor="#F2FFFFFF"
+                android:textSize="@dimen/font_14"
+                tools:text="Browse the quickest daily picks." />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 </com.google.android.material.card.MaterialCardView>

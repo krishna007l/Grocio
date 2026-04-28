@@ -27,4 +27,11 @@
     <color name="color_bottom_nav">#FFFCF8</color>
     <color name="color_primary_dark">#D96414</color>
     <color name="color_on_surface_muted">#998D83</color>
+    <color name="color_bottom_nav_glass">#D8FFFDF9</color>
+    <color name="color_bottom_nav_glass_border">#26FFFFFF</color>
+    <color name="color_blinkit_yellow">#F8CA1C</color>
+    <color name="color_blinkit_yellow_soft">#FFF7C8</color>
+    <color name="color_blinkit_black">#111111</color>
+    <color name="color_blinkit_cream">#FFFDF2</color>
+    <color name="color_blinkit_border">#22111111</color>
 </resources>

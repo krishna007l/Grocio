@@ -5,15 +5,15 @@
         android:icon="@drawable/ic_home"
         android:title="@string/str_home" />
     <item
+        android:id="@+id/SearchFragment"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/str_search" />
+    <item
         android:id="@+id/CartFragment"
         android:icon="@drawable/ic_cart"
         android:title="@string/str_cart" />
     <item
-        android:id="@+id/LikeFragment"
-        android:icon="@drawable/ic_like"
-        android:title="@string/str_like" />
-    <item
-        android:id="@+id/AccountFragment"
+        android:id="@+id/ProfileFragment"
         android:icon="@drawable/ic_account"
-        android:title="@string/str_account" />
+        android:title="@string/str_profile" />
 </menu>

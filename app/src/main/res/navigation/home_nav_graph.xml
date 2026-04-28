@@ -12,10 +12,22 @@
         tools:layout="@layout/fragment_first"/>
 
     <fragment
+        android:id="@+id/SearchFragment"
+        android:name="mrkinfotech.Grocio.ui.search.SearchFragment"
+        android:label="@string/str_search"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
         android:id="@+id/CartFragment"
         android:name="mrkinfotech.Grocio.ui.cart.CartFragment"
         android:label="@string/str_cart"
         tools:layout="@layout/fragment_cart"/>
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="mrkinfotech.Grocio.ui.account.ProfileFragment"
+        android:label="@string/str_profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/LikeFragment"
@@ -53,12 +65,6 @@
         android:name="mrkinfotech.Grocio.ui.orders.OrderSummaryFragment"
         android:label="@string/str_order_confirmed_title"
         tools:layout="@layout/fragment_order_summary" />
-
-    <fragment
-        android:id="@+id/ProfileFragment"
-        android:name="mrkinfotech.Grocio.ui.account.ProfileFragment"
-        android:label="@string/str_profile"
-        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/SettingsFragment"

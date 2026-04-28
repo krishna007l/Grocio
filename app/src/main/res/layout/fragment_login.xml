@@ -19,7 +19,7 @@
             android:id="@+id/imageLogo"
             android:layout_width="@dimen/default_image_size_64dp"
             android:layout_height="@dimen/default_image_size_64dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/grociologo"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="-19dp" />
 

@@ -51,7 +51,12 @@ class PreferenceHelper {
         }
 
         fun getOnBoardShow(context: Context): Boolean {
-            return getSharedPrefs(context).getBoolean(KEY_ONBOARDING_SHOW, false)
+            val prefs = getSharedPrefs(context)
+            return try {
+                prefs.getBoolean(KEY_ONBOARDING_SHOW, false)
+            } catch (e: ClassCastException) {
+                prefs.getString(KEY_ONBOARDING_SHOW, null)?.toBooleanStrictOrNull() ?: false
+            }
         }
 
         fun setOnBoardShow(context: Context, onShow: Boolean) {
@@ -171,7 +176,7 @@ class PreferenceHelper {
         }
 
         fun getProductSnapshot(context: Context, itemName: String): CommonDataClass? {
-            return getProductSnapshots(context)[buildItemKey(itemName)]
+            return MasterDataUtils.getItemByKey(context, itemName)
         }
 
         fun saveProductSnapshot(context: Context, item: CommonDataClass) {

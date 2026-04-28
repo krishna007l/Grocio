@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -79,7 +80,10 @@ class SignUpFragment : Fragment() {
         }
 
         binding.buttonLogin.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            val navController = findNavController()
+            if (!navController.popBackStack()) {
+                navController.navigate(R.id.LoginFragment)
+            }
         }
     }
 

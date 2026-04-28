@@ -4,6 +4,9 @@ import android.content.Context
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.data.model.GroceryItem
 import mrkinfotech.Grocio.ui.data.CommonDataClass
+import mrkinfotech.Grocio.ui.data.ProductUiModel
+import mrkinfotech.Grocio.ui.home.BannerCardUiModel
+import mrkinfotech.Grocio.ui.home.HomeCategoryUiModel
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -20,12 +23,118 @@ object MasterDataUtils {
         return ArrayList(getCatalog())
     }
 
+    fun getProductList(): ArrayList<ProductUiModel> {
+        return ArrayList(
+            getAllItems().map {
+                ProductUiModel(
+                    imageUrl = it.imageUrl,
+                    productName = it.itemName,
+                    productPrice = it.itemPrice,
+                    productCategory = it.itemCategory
+                )
+            }
+        )
+    }
+
+    fun getProductsByCategory(categoryKey: String): ArrayList<ProductUiModel> {
+        val normalizedCategory = normalizeCategoryKey(categoryKey)
+        if (normalizedCategory.isBlank()) {
+            return getProductList()
+        }
+
+        return ArrayList(
+            getProductList().filter {
+                normalizeCategoryKey(it.productCategory) == normalizedCategory
+            }
+        )
+    }
+
+    fun searchProducts(query: String): ArrayList<ProductUiModel> {
+        val normalizedQuery = query.trim().lowercase(Locale.ROOT)
+        if (normalizedQuery.isBlank()) {
+            return getProductList()
+        }
+
+        return ArrayList(
+            getProductList().filter {
+                it.productName.lowercase(Locale.ROOT).contains(normalizedQuery) ||
+                    it.productCategory.lowercase(Locale.ROOT).contains(normalizedQuery)
+            }
+        )
+    }
+
     fun getViewPagerImage(): ArrayList<Int> {
         return arrayListOf(
-            R.drawable.catalog_pineapple,
-            R.drawable.catalog_strawberries,
-            R.drawable.catalog_watermelon,
-            R.drawable.catalog_papaya
+            R.drawable.grapes_bunch,
+            R.drawable.kiwi_fruit,
+            R.drawable.pineapple_fruit,
+            R.drawable.watermelon_fresh
+        )
+    }
+
+    fun getHomeCategoryShortcuts(context: Context): ArrayList<HomeCategoryUiModel> {
+        return arrayListOf(
+            HomeCategoryUiModel(
+                title = context.getString(R.string.str_home_category_vegetables),
+                categoryKey = CATEGORY_VEGETABLE,
+                badgeText = "V",
+                subtitle = "Fresh picks",
+                accentColorRes = R.color.color_green
+            ),
+            HomeCategoryUiModel(
+                title = context.getString(R.string.str_home_category_fruits),
+                categoryKey = CATEGORY_FRUIT,
+                badgeText = "F",
+                subtitle = "Seasonal",
+                accentColorRes = R.color.color_yellow
+            ),
+            HomeCategoryUiModel(
+                title = context.getString(R.string.str_home_category_dairy),
+                categoryKey = CATEGORY_DAIRY,
+                badgeText = "D",
+                subtitle = "Breakfast",
+                accentColorRes = R.color.color_surface_alt
+            ),
+            HomeCategoryUiModel(
+                title = context.getString(R.string.str_home_category_snacks),
+                categoryKey = CATEGORY_SNACKS,
+                badgeText = "S",
+                subtitle = "Munchies",
+                accentColorRes = R.color.color_primary_dark
+            )
+        )
+    }
+
+    fun getBannerCards(): ArrayList<BannerCardUiModel> {
+        return arrayListOf(
+            BannerCardUiModel(
+                imageUrl = toResourceImageUrl(R.drawable.grapes_bunch),
+                badge = "Fresh",
+                title = "Grapes",
+                subtitle = "A fresh mixed-grape bunch from the new photo set.",
+                accentColorRes = R.color.color_blinkit_yellow
+            ),
+            BannerCardUiModel(
+                imageUrl = toResourceImageUrl(R.drawable.kiwi_fruit),
+                badge = "Deal",
+                title = "Kiwi Fruit",
+                subtitle = "Bright, tangy kiwi for smoothies and healthy snacks.",
+                accentColorRes = R.color.color_green
+            ),
+            BannerCardUiModel(
+                imageUrl = toResourceImageUrl(R.drawable.pineapple_fruit),
+                badge = "Tropical",
+                title = "Pineapple",
+                subtitle = "Fresh pineapple from the combined photo drops.",
+                accentColorRes = R.color.color_surface_alt
+            ),
+            BannerCardUiModel(
+                imageUrl = toResourceImageUrl(R.drawable.watermelon_fresh),
+                badge = "Juicy",
+                title = "Watermelon",
+                subtitle = "Cool and refreshing summer fruit for quick restocks.",
+                accentColorRes = R.color.color_primary_dark
+            )
         )
     }
 
@@ -48,11 +157,12 @@ object MasterDataUtils {
     }
 
     fun toCommonItem(item: GroceryItem): CommonDataClass {
+        val normalizedPrice = item.price.trim()
         return CommonDataClass(
             image = 0,
             itemName = item.name.trim(),
             itemDescription = "Fresh grocery pick from today's live catalog, ready for quick delivery.",
-            itemPrice = priceFormatter.format(item.price),
+            itemPrice = normalizedPrice.ifBlank { priceFormatter.format(0) },
             imageUrl = item.image.trim()
         )
     }
@@ -64,272 +174,98 @@ object MasterDataUtils {
             ?: 0.0
     }
 
+    fun formatPrice(amount: Double): String {
+        return priceFormatter.format(amount)
+    }
+
+    fun calculateCartTotal(items: Collection<CommonDataClass>): Double {
+        return items.sumOf { item ->
+            parsePrice(item.itemPrice) * item.quantity
+        }
+    }
+
     fun buildItemKey(itemName: String): String {
         return itemName.trim().lowercase(Locale.ROOT)
     }
 
     private fun mergeCatalogWithStoredProducts(context: Context): LinkedHashMap<String, CommonDataClass> {
         val mergedItems = linkedMapOf<String, CommonDataClass>()
-        getAllItems().forEach { item ->
+        getAllItems().forEach { item -> 
             mergedItems[buildItemKey(item.itemName)] = item
         }
         PreferenceHelper.getProductSnapshots(context).values.forEach { item ->
-            mergedItems[buildItemKey(item.itemName)] = item
+            val key = buildItemKey(item.itemName)
+            val catalogItem = mergedItems[key]
+            mergedItems[key] = if (catalogItem == null) {
+                item
+            } else {
+                item.copy(
+                    image = if (item.image != 0) item.image else catalogItem.image,
+                    itemDescription = item.itemDescription.ifBlank { catalogItem.itemDescription },
+                    itemPrice = item.itemPrice.ifBlank { catalogItem.itemPrice },
+                    itemCategory = item.itemCategory.ifBlank { catalogItem.itemCategory },
+                    imageUrl = item.imageUrl.ifBlank { catalogItem.imageUrl }
+                )
+            }
         }
         return mergedItems
     }
 
     private const val CATEGORY_FRUIT = "fruit"
     private const val CATEGORY_VEGETABLE = "vegetable"
-    private const val CATEGORY_PANTRY = "pantry"
+    private const val CATEGORY_DAIRY = "dairy"
+    private const val CATEGORY_SNACKS = "snacks"
+    private const val CATEGORY_PANTRY = CATEGORY_SNACKS
 
     private fun getCatalog(): List<CommonDataClass> {
         return listOf(
-            product(
-                R.drawable.apple,
-                "Fresh Apple",
-                "1 kg pack of crisp red apples, naturally sweet and perfect for snacks or salads.",
-                "$3.99",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.banana,
-                "Banana",
-                "6 fresh bananas with a soft texture and clean sweetness for breakfast or shakes.",
-                "$1.49",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.mango,
-                "Mango",
-                "Farm-fresh mangoes with juicy pulp and rich flavor, ideal for dessert or smoothies.",
-                "$4.50",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.watermalen,
-                "Watermelon",
-                "1 whole watermelon with a juicy bite and refreshing taste for summer servings.",
-                "$5.20",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.oreng,
-                "Orange",
-                "1 kg of bright oranges packed with citrus flavor and daily vitamin C support.",
-                "$2.80",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.apple,
-                "Green Apple",
-                "500 g of tart green apples with a crunchy bite, great for fruit bowls and juices.",
-                "$2.60",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_strawberries,
-                "Strawberries",
-                "200 g punnet of bright, juicy strawberries for desserts, smoothies, and breakfast bowls.",
-                "$3.40",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_kiwi,
-                "Kiwi",
-                "4 ripe kiwis with vibrant green flesh and a sweet-tangy bite.",
-                "$2.95",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_pineapple,
-                "Pineapple",
-                "1 sweet pineapple with fragrant flesh, ideal for fresh juice and fruit platters.",
-                "$4.20",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_papaya,
-                "Papaya",
-                "1 ripe papaya with soft orange flesh, perfect for a light breakfast or smoothie.",
-                "$3.85",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_grapes,
-                "Mixed Grapes",
-                "500 g of fresh mixed grapes with a juicy texture and naturally sweet taste.",
-                "$4.10",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_limes,
-                "Green Limes",
-                "250 g of juicy green limes to brighten salads, drinks, and everyday cooking.",
-                "$1.90",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_guava,
-                "Guava",
-                "500 g of tender guavas with pink flesh and a fragrant tropical flavor.",
-                "$3.10",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_rambutan,
-                "Rambutan",
-                "500 g of fresh rambutans with sweet, floral fruit inside each shell.",
-                "$5.95",
-                CATEGORY_FRUIT
-            ),
-            product(
-                R.drawable.catalog_tomato,
-                "Tomato",
-                "1 kg of ripe tomatoes for daily curries, salads, sandwiches, and sauces.",
-                "$2.20",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_carrots,
-                "Carrots",
-                "1 kg of crunchy carrots rich in color and perfect for soups, salads, and snacks.",
-                "$1.85",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_potatoes,
-                "Potatoes",
-                "1 kg of smooth all-purpose potatoes for fries, curries, roasting, or mashing.",
-                "$1.70",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_onions,
-                "Onions",
-                "1 kg of kitchen onions with a balanced flavor for everyday meals.",
-                "$1.60",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_spinach,
-                "Spinach",
-                "1 fresh bunch of leafy spinach for curries, soups, wraps, and healthy sides.",
-                "$1.75",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_cauliflower,
-                "Cauliflower",
-                "1 medium cauliflower with tightly packed florets, fresh for stir-fry or roast.",
-                "$2.90",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_radish,
-                "White Radish",
-                "1 crisp white radish with a clean bite for salads, pickles, and sabzi.",
-                "$1.55",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_green_peas,
-                "Green Peas",
-                "500 g of tender green peas, sweet and fresh for pulao, curry, and pasta.",
-                "$2.30",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_eggplant,
-                "Eggplant",
-                "500 g of glossy eggplants with a soft texture, great for bharta and curries.",
-                "$2.15",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_garlic,
-                "Garlic",
-                "250 g of aromatic garlic bulbs to build bold flavor in every meal.",
-                "$1.45",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_ginger,
-                "Ginger",
-                "200 g of fresh ginger root for tea, stir-fry, marinades, and home remedies.",
-                "$1.35",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_beets,
-                "Beets",
-                "500 g of earthy red beets for juices, salads, roasting, and wholesome meals.",
-                "$2.65",
-                CATEGORY_VEGETABLE
-            ),
-            product(
-                R.drawable.catalog_cashew_nuts,
-                "Cashew Nuts",
-                "250 g of whole cashews, creamy and crunchy for snacking or festive dishes.",
-                "$5.75",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_almonds,
-                "Almonds",
-                "250 g of premium almonds for healthy snacking, milk, and breakfast toppings.",
-                "$6.10",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_pistachios,
-                "Pistachios",
-                "200 g of roasted pistachios with a rich flavor and satisfying crunch.",
-                "$6.80",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_walnuts,
-                "Walnuts",
-                "250 g of fresh walnut kernels, ideal for cereals, baking, and smart snacking.",
-                "$6.40",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_peanuts,
-                "Peanuts",
-                "300 g of roasted peanuts for quick bites, chutneys, and homemade mixes.",
-                "$2.05",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_dates,
-                "Dates",
-                "400 g of soft dates with natural sweetness, perfect for fasting and desserts.",
-                "$4.45",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_honey,
-                "Raw Honey",
-                "500 g jar of golden honey with a smooth pour and naturally rich sweetness.",
-                "$5.25",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_bread,
-                "Whole Wheat Bread",
-                "1 soft loaf of whole wheat bread for breakfast toast, sandwiches, and snacks.",
-                "$2.50",
-                CATEGORY_PANTRY
-            ),
-            product(
-                R.drawable.catalog_dark_chocolate,
-                "Dark Chocolate",
-                "100 g bar of rich dark chocolate for gifting, desserts, or evening cravings.",
-                "$3.30",
-                CATEGORY_PANTRY
-            )
+            catalogItem(R.drawable.hersheys_syrup, "Hershey's Syrup", "$4.50", CATEGORY_SNACKS),
+            catalogItem(R.drawable.corn_on_cob, "Corn on Cob", "$1.90", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.banana_bunch, "Banana Bunch", "$2.10", CATEGORY_FRUIT),
+            catalogItem(R.drawable.lays_classic, "Lay's Classic", "$2.75", CATEGORY_SNACKS),
+            catalogItem(R.drawable.tomato_ketchup, "Tomato Ketchup", "$3.05", CATEGORY_SNACKS),
+            catalogItem(R.drawable.pineapple_fruit, "Pineapple", "$3.60", CATEGORY_FRUIT),
+            catalogItem(R.drawable.cheetos_flamin_hot, "Cheetos Flamin' Hot", "$2.95", CATEGORY_SNACKS),
+            catalogItem(R.drawable.chips_classic, "Chips Classic", "$2.40", CATEGORY_SNACKS),
+            catalogItem(R.drawable.clover_chips, "Clover Chips", "$2.60", CATEGORY_SNACKS),
+            catalogItem(R.drawable.cheese_cubes, "Cheese Cubes", "$4.20", CATEGORY_DAIRY),
+            catalogItem(R.drawable.lays_hot_sweet_chilli, "Lay's Hot and Sweet Chilli", "$2.95", CATEGORY_SNACKS),
+            catalogItem(R.drawable.cherries, "Cherries", "$5.40", CATEGORY_FRUIT),
+            catalogItem(R.drawable.red_delicious_apple, "Red Delicious Apple", "$2.85", CATEGORY_FRUIT),
+            catalogItem(R.drawable.premium_rice, "Premium Rice", "$8.20", CATEGORY_SNACKS),
+            catalogItem(R.drawable.stik_o_wafer_sticks, "Stik-O Wafer Sticks", "$3.95", CATEGORY_SNACKS),
+            catalogItem(R.drawable.alphonso_mango, "Alphonso Mango", "$4.80", CATEGORY_FRUIT),
+            catalogItem(R.drawable.oreo_cookies, "Oreo Cookies", "$3.25", CATEGORY_SNACKS),
+            catalogItem(R.drawable.grapes_bunch, "Grapes", "$3.35", CATEGORY_FRUIT),
+            catalogItem(R.drawable.kiwi_fruit, "Kiwi Fruit", "$3.10", CATEGORY_FRUIT),
+            catalogItem(R.drawable.strawberries_fresh, "Strawberries", "$3.80", CATEGORY_FRUIT),
+            catalogItem(R.drawable.carrots_bunch, "Carrots", "$1.85", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.potatoes_yellow, "Potatoes", "$1.70", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.onions_bulb, "Onions", "$1.60", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.eggplant_raw, "Eggplant", "$2.15", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.spinach_bunch, "Spinach", "$1.75", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.garlic_bulbs, "Garlic", "$1.45", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.ginger_root, "Ginger", "$1.35", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.peanuts_roasted, "Peanuts", "$2.05", CATEGORY_SNACKS),
+            catalogItem(R.drawable.walnuts_halves, "Walnuts", "$6.40", CATEGORY_SNACKS),
+            catalogItem(R.drawable.honey_jar, "Honey", "$5.25", CATEGORY_SNACKS),
+            catalogItem(R.drawable.bread_loaf, "Bread", "$2.50", CATEGORY_SNACKS),
+            catalogItem(R.drawable.dark_chocolate_bar, "Dark Chocolate", "$3.30", CATEGORY_SNACKS),
+            catalogItem(R.drawable.almonds_raw, "Almonds", "$6.10", CATEGORY_SNACKS),
+            catalogItem(R.drawable.radish_white, "Radish", "$1.55", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.pineapple_slice, "Pineapple Slice", "$3.75", CATEGORY_FRUIT),
+            catalogItem(R.drawable.guava_fruit, "Guava", "$3.10", CATEGORY_FRUIT),
+            catalogItem(R.drawable.limes_green, "Limes", "$1.90", CATEGORY_FRUIT),
+            catalogItem(R.drawable.green_peas, "Green Peas", "$2.30", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.cauliflower_fresh, "Cauliflower", "$2.90", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.papaya_fruit, "Papaya", "$3.85", CATEGORY_FRUIT),
+            catalogItem(R.drawable.rambutan_fruit, "Rambutan", "$5.95", CATEGORY_FRUIT),
+            catalogItem(R.drawable.tomato_fresh, "Tomato", "$2.20", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.cashew_nuts, "Cashew Nuts", "$5.75", CATEGORY_SNACKS),
+            catalogItem(R.drawable.dates_fruit, "Dates Fruit", "$4.90", CATEGORY_FRUIT),
+            catalogItem(R.drawable.pistachios, "Pistachios", "$6.80", CATEGORY_SNACKS),
+            catalogItem(R.drawable.beets, "Beets", "$2.45", CATEGORY_VEGETABLE),
+            catalogItem(R.drawable.watermelon_fresh, "Watermelon", "$5.20", CATEGORY_FRUIT),
         )
     }
 
@@ -340,9 +276,63 @@ object MasterDataUtils {
         itemPrice: String,
         itemCategory: String
     ): CommonDataClass {
-        return CommonDataClass(image, itemName, itemDescription, itemPrice, itemCategory)
+        return CommonDataClass(
+            image = image,
+            itemName = itemName.trim(),
+            itemDescription = itemDescription.trim(),
+            itemPrice = itemPrice.trim(),
+            itemCategory = itemCategory.trim(),
+            imageUrl = toResourceImageUrl(image)
+        )
+    }
+
+    private fun catalogItem(
+        image: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCategory: String
+    ): CommonDataClass {
+        return product(
+            image = image,
+            itemName = itemName,
+            itemDescription = "Fresh grocery pick from the photo set.",
+            itemPrice = itemPrice,
+            itemCategory = itemCategory
+        )
+    }
+
+    private fun product(
+        imageUrl: String,
+        productName: String,
+        productDescription: String,
+        productPrice: String,
+        productCategory: String
+    ): CommonDataClass {
+        return CommonDataClass(
+            image = 0,
+            itemName = productName.trim(),
+            itemDescription = productDescription.trim(),
+            itemPrice = productPrice.trim(),
+            itemCategory = productCategory.trim(),
+            imageUrl = imageUrl.trim()
+        )
     }
 
     private val priceFormatter: NumberFormat =
         NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+
+    private fun toResourceImageUrl(drawableResId: Int): String {
+        return "android.resource://mrkinfotech.Grocio/$drawableResId"
+    }
+
+    private fun normalizeCategoryKey(categoryKey: String): String {
+        return when (categoryKey.trim().lowercase(Locale.ROOT)) {
+            "", "all" -> ""
+            "fruit", "fruits" -> CATEGORY_FRUIT
+            "vegetable", "vegetables" -> CATEGORY_VEGETABLE
+            "dairy" -> CATEGORY_DAIRY
+            "snacks", "snack", "groceries", "grocery", "pantry" -> CATEGORY_SNACKS
+            else -> categoryKey.trim().lowercase(Locale.ROOT)
+        }
+    }
 }
