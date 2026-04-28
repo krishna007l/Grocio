@@ -190,4 +190,15 @@
     <string name="str_checkout_address_required">Please enter your delivery address</string>
     <string name="str_quantity">Quantity</string>
     <string name="str_add_quantity_to_cart">Add %1$d to Cart</string>
+    <string name="str_continue_shopping">Continue Shopping</string>
+    <string name="str_invoice_badge">Invoice</string>
+    <string name="str_invoice_title">Invoice Generated</string>
+    <string name="str_invoice_subtitle">Your order details and billing information are ready below.</string>
+    <string name="str_invoice_number_label">Invoice No.</string>
+    <string name="str_invoice_date_label">Date</string>
+    <string name="str_invoice_customer_label">Bill To</string>
+    <string name="str_invoice_address_label">Delivery Address</string>
+    <string name="str_invoice_status_label">Status</string>
+    <string name="str_invoice_items_label">Items</string>
+    <string name="str_invoice_items_count">%1$d items</string>
 </resources>
