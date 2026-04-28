@@ -36,7 +36,23 @@
         <action
             android:id="@+id/action_AccountFragment_to_SettingsFragment"
             app:destination="@id/SettingsFragment" />
+
+        <action
+            android:id="@+id/action_AccountFragment_to_OrdersFragment"
+            app:destination="@id/OrdersFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/OrdersFragment"
+        android:name="mrkinfotech.Grocio.ui.orders.OrdersFragment"
+        android:label="@string/str_orders"
+        tools:layout="@layout/fragment_orders" />
+
+    <fragment
+        android:id="@+id/OrderSummaryFragment"
+        android:name="mrkinfotech.Grocio.ui.orders.OrderSummaryFragment"
+        android:label="@string/str_order_confirmed_title"
+        tools:layout="@layout/fragment_order_summary" />
 
     <fragment
         android:id="@+id/ProfileFragment"

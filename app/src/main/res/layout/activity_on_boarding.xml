@@ -37,7 +37,7 @@
                 android:paddingHorizontal="@dimen/padding_16"
                 android:paddingVertical="@dimen/padding_8"
                 android:text="@string/str_brand_badge"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_primary_dark"
                 android:textSize="@dimen/font_12" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -47,7 +47,7 @@
                 android:layout_marginTop="@dimen/margin_20"
                 android:fontFamily="@font/gentiumbookplus_bold"
                 android:text="@string/str_welcome_to_our_store"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/font_36" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -58,7 +58,7 @@
                 android:fontFamily="@font/gentiumbookplus_regular"
                 android:lineSpacingExtra="4dp"
                 android:text="@string/str_on_board_description"
-                android:textColor="#FFF4E8"
+                android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/font_14" />
 
             <com.google.android.material.card.MaterialCardView
@@ -66,10 +66,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_24"
-                app:cardBackgroundColor="#1AFFFFFF"
+                app:cardBackgroundColor="@color/color_surface"
                 app:cardCornerRadius="@dimen/hero_corner_radius"
                 app:cardElevation="0dp"
-                app:strokeColor="#33FFFFFF"
+                app:strokeColor="@color/color_border"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/gentiumbookplus_bold"
                         android:text="@string/str_onboarding_panel_title"
-                        android:textColor="@color/color_white"
+                        android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/font_24" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -93,7 +93,7 @@
                         android:fontFamily="@font/gentiumbookplus_regular"
                         android:lineSpacingExtra="4dp"
                         android:text="@string/str_onboarding_panel_copy"
-                        android:textColor="#FFF2E6"
+                        android:textColor="@color/color_text_secondary"
                         android:textSize="@dimen/font_14" />
 
                     <LinearLayout
@@ -110,7 +110,7 @@
                             android:paddingHorizontal="@dimen/padding_12"
                             android:paddingVertical="@dimen/padding_6"
                             android:text="@string/str_onboarding_chip_fruits"
-                            android:textColor="@color/color_white"
+                            android:textColor="@color/color_primary_dark"
                             android:textSize="@dimen/font_12" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -122,7 +122,7 @@
                             android:paddingHorizontal="@dimen/padding_12"
                             android:paddingVertical="@dimen/padding_6"
                             android:text="@string/str_onboarding_chip_vegetables"
-                            android:textColor="@color/color_white"
+                            android:textColor="@color/color_primary_dark"
                             android:textSize="@dimen/font_12" />
                     </LinearLayout>
 
@@ -140,7 +140,7 @@
                             android:paddingHorizontal="@dimen/padding_12"
                             android:paddingVertical="@dimen/padding_6"
                             android:text="@string/str_onboarding_chip_dairy"
-                            android:textColor="@color/color_white"
+                            android:textColor="@color/color_primary_dark"
                             android:textSize="@dimen/font_12" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -152,7 +152,7 @@
                             android:paddingHorizontal="@dimen/padding_12"
                             android:paddingVertical="@dimen/padding_6"
                             android:text="@string/str_onboarding_chip_snacks"
-                            android:textColor="@color/color_white"
+                            android:textColor="@color/color_primary_dark"
                             android:textSize="@dimen/font_12" />
                     </LinearLayout>
 
@@ -167,10 +167,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            app:cardBackgroundColor="#18FFFFFF"
+                            app:cardBackgroundColor="@color/color_surface_alt"
                             app:cardCornerRadius="@dimen/surface_corner_radius"
                             app:cardElevation="0dp"
-                            app:strokeColor="#24FFFFFF"
+                            app:strokeColor="#F7C18D"
                             app:strokeWidth="1dp">
 
                             <LinearLayout
@@ -184,7 +184,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/gentiumbookplus_bold"
                                     android:text="@string/str_onboarding_stat_one_title"
-                                    android:textColor="@color/color_white"
+                                    android:textColor="@color/color_text_primary"
                                     android:textSize="@dimen/font_16" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -194,7 +194,7 @@
                                     android:fontFamily="@font/gentiumbookplus_regular"
                                     android:lineSpacingExtra="2dp"
                                     android:text="@string/str_onboarding_stat_one_copy"
-                                    android:textColor="#FFF2E6"
+                                    android:textColor="@color/color_text_secondary"
                                     android:textSize="@dimen/font_12" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -207,10 +207,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            app:cardBackgroundColor="#18FFFFFF"
+                            app:cardBackgroundColor="@color/color_surface_alt"
                             app:cardCornerRadius="@dimen/surface_corner_radius"
                             app:cardElevation="0dp"
-                            app:strokeColor="#24FFFFFF"
+                            app:strokeColor="#F7C18D"
                             app:strokeWidth="1dp">
 
                             <LinearLayout
@@ -224,7 +224,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/gentiumbookplus_bold"
                                     android:text="@string/str_onboarding_stat_two_title"
-                                    android:textColor="@color/color_white"
+                                    android:textColor="@color/color_text_primary"
                                     android:textSize="@dimen/font_16" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -234,7 +234,7 @@
                                     android:fontFamily="@font/gentiumbookplus_regular"
                                     android:lineSpacingExtra="2dp"
                                     android:text="@string/str_onboarding_stat_two_copy"
-                                    android:textColor="#FFF2E6"
+                                    android:textColor="@color/color_text_secondary"
                                     android:textSize="@dimen/font_12" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -274,7 +274,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/gentiumbookplus_bold"
                                 android:text="@string/str_onboarding_feature_one_title"
-                                android:textColor="@color/color_white"
+                                android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/font_16" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -284,7 +284,7 @@
                                 android:fontFamily="@font/gentiumbookplus_regular"
                                 android:lineSpacingExtra="2dp"
                                 android:text="@string/str_onboarding_feature_one_copy"
-                                android:textColor="#FFF2E6"
+                                android:textColor="@color/color_text_secondary"
                                 android:textSize="@dimen/font_12" />
                         </LinearLayout>
                     </LinearLayout>
@@ -323,7 +323,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/gentiumbookplus_bold"
                                 android:text="@string/str_onboarding_feature_two_title"
-                                android:textColor="@color/color_white"
+                                android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/font_16" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -333,7 +333,7 @@
                                 android:fontFamily="@font/gentiumbookplus_regular"
                                 android:lineSpacingExtra="2dp"
                                 android:text="@string/str_onboarding_feature_two_copy"
-                                android:textColor="#FFF2E6"
+                                android:textColor="@color/color_text_secondary"
                                 android:textSize="@dimen/font_12" />
                         </LinearLayout>
                     </LinearLayout>
@@ -372,7 +372,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/gentiumbookplus_bold"
                                 android:text="@string/str_onboarding_feature_three_title"
-                                android:textColor="@color/color_white"
+                                android:textColor="@color/color_text_primary"
                                 android:textSize="@dimen/font_16" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -382,7 +382,7 @@
                                 android:fontFamily="@font/gentiumbookplus_regular"
                                 android:lineSpacingExtra="2dp"
                                 android:text="@string/str_onboarding_feature_three_copy"
-                                android:textColor="#FFF2E6"
+                                android:textColor="@color/color_text_secondary"
                                 android:textSize="@dimen/font_12" />
                         </LinearLayout>
                     </LinearLayout>

@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        app:cardBackgroundColor="#1FFFFFFF"
+        app:cardBackgroundColor="@color/color_surface"
         app:cardCornerRadius="@dimen/hero_corner_radius"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/textSplashTapHint"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.58"
-        app:strokeColor="#33FFFFFF"
+        app:strokeColor="@color/color_border"
         app:strokeWidth="1dp">
 
         <LinearLayout
@@ -73,7 +73,7 @@
                 android:paddingHorizontal="@dimen/padding_16"
                 android:paddingVertical="@dimen/padding_8"
                 android:text="@string/str_brand_badge"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_primary_dark"
                 android:textSize="@dimen/font_12" />
 
             <FrameLayout
@@ -109,7 +109,7 @@
                     android:paddingHorizontal="@dimen/padding_12"
                     android:paddingVertical="@dimen/padding_6"
                     android:text="@string/str_splash_chip_fast"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_primary_dark"
                     android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -123,7 +123,7 @@
                     android:paddingHorizontal="@dimen/padding_12"
                     android:paddingVertical="@dimen/padding_6"
                     android:text="@string/str_splash_chip_daily"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_primary_dark"
                     android:textSize="@dimen/font_12" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -136,7 +136,7 @@
                     android:paddingHorizontal="@dimen/padding_12"
                     android:paddingVertical="@dimen/padding_6"
                     android:text="@string/str_splash_chip_local"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_primary_dark"
                     android:textSize="@dimen/font_12" />
 
                 <FrameLayout
@@ -164,7 +164,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/gentiumbookplus_bold"
                 android:text="@string/str_splash_hero_title"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/font_36" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -175,7 +175,7 @@
                 android:gravity="center"
                 android:lineSpacingExtra="4dp"
                 android:text="@string/str_splash_hero_subtitle"
-                android:textColor="#FFF8F1"
+                android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/font_14" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -187,7 +187,7 @@
                 android:letterSpacing="0.12"
                 android:text="@string/str_splash_loading_label"
                 android:textAllCaps="true"
-                android:textColor="#FFF5E8"
+                android:textColor="@color/color_primary_dark"
                 android:textSize="@dimen/font_11" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -197,7 +197,7 @@
                 android:layout_marginTop="@dimen/margin_8"
                 android:fontFamily="@font/gentiumbookplus_bold"
                 android:text="@string/str_splash_status_one"
-                android:textColor="@color/color_white"
+                android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/font_20" />
 
             <FrameLayout
@@ -235,7 +235,7 @@
                     android:layout_marginStart="@dimen/margin_8"
                     android:fontFamily="@font/gentiumbookplus_regular"
                     android:text="@string/str_splash_footer"
-                    android:textColor="#FFF4E8"
+                    android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/font_14" />
             </LinearLayout>
         </LinearLayout>
@@ -248,7 +248,7 @@
         android:layout_marginBottom="@dimen/margin_8"
         android:fontFamily="@font/gentiumbookplus_bold"
         android:text="@string/str_splash_tap_hint"
-        android:textColor="#FFF8EE"
+        android:textColor="@color/color_primary_dark"
         android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -28,6 +28,7 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import mrkinfotech.Grocio.R
 import mrkinfotech.Grocio.databinding.FragmentLoginBinding
+import mrkinfotech.Grocio.ui.data.ProfileData
 import mrkinfotech.Grocio.ui.home.HomeMainActivity
 import mrkinfotech.Grocio.utils.AppConstant
 import mrkinfotech.Grocio.utils.CustomDialog
@@ -121,8 +122,18 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     CustomDialog.showToast(requireActivity(), "Login Successful")
-                    PreferenceHelper.setUserEmail(requireContext(), account.email)
+                    val email = account.email.orEmpty()
+                    PreferenceHelper.setUserEmail(requireContext(), email)
+                    PreferenceHelper.saveProfileData(
+                        requireContext(),
+                        ProfileData(
+                            name = account.displayName.orEmpty(),
+                            email = email,
+                            imageUri = account.photoUrl?.toString().orEmpty()
+                        )
+                    )
                     startActivity(Intent(requireActivity(), HomeMainActivity::class.java))
+                    requireActivity().finish()
                 } else {
                     CustomDialog.showToast(requireActivity(), "Login Failed")
                 }

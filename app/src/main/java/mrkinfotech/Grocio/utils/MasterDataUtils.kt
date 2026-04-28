@@ -1,7 +1,10 @@
 package mrkinfotech.Grocio.utils
 
+import android.content.Context
 import mrkinfotech.Grocio.R
+import mrkinfotech.Grocio.data.model.GroceryItem
 import mrkinfotech.Grocio.ui.data.CommonDataClass
+import java.text.NumberFormat
 import java.util.Locale
 
 object MasterDataUtils {
@@ -30,13 +33,50 @@ object MasterDataUtils {
         return ArrayList(getCatalog().distinctBy { buildItemKey(it.itemName) })
     }
 
-    fun getItemsByKeys(itemKeys: Set<String>): ArrayList<CommonDataClass> {
-        if (itemKeys.isEmpty()) return arrayListOf()
-        return ArrayList(getAllItems().filter { buildItemKey(it.itemName) in itemKeys })
+    fun getAllItems(context: Context): ArrayList<CommonDataClass> {
+        return ArrayList(mergeCatalogWithStoredProducts(context).values)
     }
 
-    private fun buildItemKey(itemName: String): String {
+    fun getItemByKey(context: Context, itemName: String): CommonDataClass? {
+        return mergeCatalogWithStoredProducts(context)[buildItemKey(itemName)]
+    }
+
+    fun getItemsByKeys(context: Context, itemKeys: Set<String>): ArrayList<CommonDataClass> {
+        if (itemKeys.isEmpty()) return arrayListOf()
+        val allItems = mergeCatalogWithStoredProducts(context)
+        return ArrayList(itemKeys.mapNotNull { allItems[it] })
+    }
+
+    fun toCommonItem(item: GroceryItem): CommonDataClass {
+        return CommonDataClass(
+            image = 0,
+            itemName = item.name.trim(),
+            itemDescription = "Fresh grocery pick from today's live catalog, ready for quick delivery.",
+            itemPrice = priceFormatter.format(item.price),
+            imageUrl = item.image.trim()
+        )
+    }
+
+    fun parsePrice(itemPrice: String): Double {
+        return itemPrice
+            .replace(Regex("[^0-9.]"), "")
+            .toDoubleOrNull()
+            ?: 0.0
+    }
+
+    fun buildItemKey(itemName: String): String {
         return itemName.trim().lowercase(Locale.ROOT)
+    }
+
+    private fun mergeCatalogWithStoredProducts(context: Context): LinkedHashMap<String, CommonDataClass> {
+        val mergedItems = linkedMapOf<String, CommonDataClass>()
+        getAllItems().forEach { item ->
+            mergedItems[buildItemKey(item.itemName)] = item
+        }
+        PreferenceHelper.getProductSnapshots(context).values.forEach { item ->
+            mergedItems[buildItemKey(item.itemName)] = item
+        }
+        return mergedItems
     }
 
     private const val CATEGORY_FRUIT = "fruit"
@@ -302,4 +342,7 @@ object MasterDataUtils {
     ): CommonDataClass {
         return CommonDataClass(image, itemName, itemDescription, itemPrice, itemCategory)
     }
+
+    private val priceFormatter: NumberFormat =
+        NumberFormat.getCurrencyInstance(Locale("en", "IN"))
 }

@@ -165,22 +165,34 @@
                     android:layout_height="@dimen/list_row_icon_size"
                     android:src="@drawable/ic_delivery_address"
                     android:tint="@color/color_primary"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textDeliveryAddress"
+                    android:id="@+id/textDeliveryAddressTitle"
                     style="@style/MediumTextSizeTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_16"
-                    android:maxLines="2"
                     android:text="@string/str_delivery_address"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/imageArrowDeliveryAddress"
                     app:layout_constraintStart_toEndOf="@+id/imageDeliveryAddress"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textDeliveryAddress"
+                    style="@style/MediumTextSizeDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:maxLines="2"
+                    android:text="@string/str_delivery_address_placeholder"
+                    android:textColor="@color/color_text_secondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/imageArrowDeliveryAddress"
+                    app:layout_constraintStart_toEndOf="@+id/imageDeliveryAddress"
+                    app:layout_constraintTop_toBottomOf="@id/textDeliveryAddressTitle" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageArrowDeliveryAddress"

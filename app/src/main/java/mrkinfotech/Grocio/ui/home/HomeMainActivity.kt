@@ -60,6 +60,12 @@ class   HomeMainActivity : AppCompatActivity() {
         }
     }
 
+    fun openHomeScreen() {
+        if (binding.bottomNavigationView.selectedItemId != R.id.HomeFragment) {
+            binding.bottomNavigationView.selectedItemId = R.id.HomeFragment
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_home_content_main)
         return navController.navigateUp(appBarConfiguration)

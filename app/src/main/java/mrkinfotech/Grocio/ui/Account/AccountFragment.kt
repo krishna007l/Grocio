@@ -1,6 +1,5 @@
 package mrkinfotech.Grocio.ui.account
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -35,15 +34,12 @@ class AccountFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private val addressPickerLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val localBinding = _binding ?: return@registerForActivityResult
             val fragmentContext = context ?: return@registerForActivityResult
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == android.app.Activity.RESULT_OK) {
                 val address = result.data?.getStringExtra("selected_address")
                     ?: return@registerForActivityResult
-                localBinding.textDeliveryAddress.text = address
-
-                val profile = PreferenceHelper.getProfileData(fragmentContext)
-                PreferenceHelper.saveProfileData(fragmentContext, profile.copy(address = address))
+                saveDeliveryAddress(fragmentContext, address)
+                CustomDialog.showToast(fragmentContext, getString(R.string.str_address_updated))
             }
         }
 
@@ -78,7 +74,10 @@ class AccountFragment : Fragment() {
         }
 
         binding.OrdersLayout.setOnClickListener {
-            CustomDialog.showToast(requireContext(), getString(R.string.str_orders_coming_soon))
+            val navController = findNavController()
+            if (navController.currentDestination?.id == R.id.AccountFragment) {
+                navController.navigate(R.id.action_AccountFragment_to_OrdersFragment)
+            }
         }
 
         binding.deliveryAddressLayout.setOnClickListener {
@@ -131,40 +130,16 @@ class AccountFragment : Fragment() {
     }
 
     private fun onDeliveryAddressClicked() {
-        val currentAddress = binding.textDeliveryAddress.text.toString().trim()
+        val currentAddress = PreferenceHelper.getProfileData(requireContext()).address
         CustomDialog.showPicAddressDialog(
             requireContext(),
             requireActivity(),
-            if (currentAddress != getString(R.string.str_delivery_address)) {
-                currentAddress
-            } else {
-                getString(R.string.str_delivery_address)
+            currentAddress = currentAddress,
+            onAddressSelected = { address ->
+                saveDeliveryAddress(requireContext(), address)
+                CustomDialog.showToast(requireContext(), getString(R.string.str_address_updated))
             },
-            { address ->
-                binding.textDeliveryAddress.text = address
-
-                val profile = PreferenceHelper.getProfileData(requireContext())
-                val updatedProfile = profile.copy(address = address)
-                PreferenceHelper.saveProfileData(requireContext(), updatedProfile)
-
-                val userEmail = updatedProfile.email.ifBlank {
-                    PreferenceHelper.getUserEmail(requireContext()).orEmpty()
-                }
-                if (userEmail.isNotBlank()) {
-                    db.collection(AppConstant.USER_COLLECTION)
-                        .document(userEmail)
-                        .set(mapOf("address" to address), SetOptions.merge())
-                        .addOnSuccessListener {
-                            if (isAdded) {
-                                CustomDialog.showToast(
-                                    requireActivity(),
-                                    getString(R.string.str_address_updated)
-                                )
-                            }
-                        }
-                }
-            },
-            {
+            selectAddress = {
                 val intent = Intent(requireActivity(), MapActivity::class.java)
                 addressPickerLauncher.launch(intent)
             }
@@ -215,7 +190,7 @@ class AccountFragment : Fragment() {
             getString(R.string.str_grocio_member)
         }
         localBinding.textDeliveryAddress.text = profile.address.ifBlank {
-            getString(R.string.str_delivery_address)
+            getString(R.string.str_delivery_address_placeholder)
         }
 
         val imageUrl = profile.imageUri.takeIf { it.isNotBlank() }
@@ -267,6 +242,24 @@ class AccountFragment : Fragment() {
                 PreferenceHelper.saveProfileData(requireContext(), mergedProfile)
                 bindProfile(mergedProfile)
             }
+    }
+
+    private fun saveDeliveryAddress(fragmentContext: Context, address: String) {
+        val localBinding = _binding ?: return
+        localBinding.textDeliveryAddress.text = address
+
+        val profile = PreferenceHelper.getProfileData(fragmentContext)
+        val updatedProfile = profile.copy(address = address)
+        PreferenceHelper.saveProfileData(fragmentContext, updatedProfile)
+
+        val userEmail = updatedProfile.email.ifBlank {
+            PreferenceHelper.getUserEmail(fragmentContext).orEmpty()
+        }
+        if (userEmail.isBlank()) return
+
+        db.collection(AppConstant.USER_COLLECTION)
+            .document(userEmail)
+            .set(mapOf("address" to address), SetOptions.merge())
     }
 
     override fun onDestroyView() {

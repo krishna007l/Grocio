@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Patterns
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import mrkinfotech.Grocio.R
+import mrkinfotech.Grocio.ui.data.CheckoutDetails
 
 
 object CustomDialog {
@@ -29,7 +31,7 @@ object CustomDialog {
         selectAddress: View.OnClickListener? = null
     ): BottomSheetDialog {
         val dialog = BottomSheetDialog(context)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
 
         val view = activity.layoutInflater.inflate(
             R.layout.dialog_pic_address, null
@@ -41,14 +43,9 @@ object CustomDialog {
         val buttonConfirmLocation: AppCompatButton =
             view.findViewById(R.id.buttonConfirmLocation)
 
-        if (currentAddress.isNotEmpty()) {
-            editTextAddress.setText(currentAddress)
-            editTextAddress.visibility = View.VISIBLE
-            buttonConfirmLocation.visibility = View.VISIBLE
-        } else {
-            editTextAddress.visibility = View.GONE
-            buttonConfirmLocation.visibility = View.GONE
-        }
+        editTextAddress.setText(currentAddress)
+        editTextAddress.visibility = View.VISIBLE
+        buttonConfirmLocation.visibility = View.VISIBLE
 
         buttonAddressFromMap.setOnClickListener {
             selectAddress?.onClick(it)
@@ -101,4 +98,82 @@ object CustomDialog {
         }
         dialog.show()
     }
+
+    fun showCheckoutDialog(
+        context: Context,
+        activity: Activity,
+        initialDetails: CheckoutDetails,
+        totalAmount: String,
+        onConfirm: (CheckoutDetails) -> Unit
+    ): BottomSheetDialog {
+        val dialog = BottomSheetDialog(context)
+        val view = activity.layoutInflater.inflate(R.layout.dialog_checkout_details, null)
+
+        val textCheckoutTotalValue: AppCompatTextView =
+            view.findViewById(R.id.textCheckoutTotalValue)
+        val editTextName: AppCompatEditText = view.findViewById(R.id.editTextCheckoutName)
+        val editTextPhone: AppCompatEditText = view.findViewById(R.id.editTextCheckoutPhone)
+        val editTextEmail: AppCompatEditText = view.findViewById(R.id.editTextCheckoutEmail)
+        val editTextAddress: AppCompatEditText = view.findViewById(R.id.editTextCheckoutAddress)
+        val editTextNote: AppCompatEditText = view.findViewById(R.id.editTextCheckoutNote)
+        val buttonConfirm: AppCompatButton = view.findViewById(R.id.buttonConfirmOrder)
+
+        textCheckoutTotalValue.text = totalAmount
+        editTextName.setText(initialDetails.customerName)
+        editTextPhone.setText(initialDetails.phoneNumber)
+        editTextEmail.setText(initialDetails.email)
+        editTextAddress.setText(initialDetails.deliveryAddress)
+        editTextNote.setText(initialDetails.orderNote)
+
+        buttonConfirm.setOnClickListener {
+            val customerName = editTextName.text?.toString().orEmpty().trim()
+            val phoneNumber = editTextPhone.text?.toString().orEmpty().trim()
+            val email = editTextEmail.text?.toString().orEmpty().trim()
+            val deliveryAddress = editTextAddress.text?.toString().orEmpty().trim()
+            val orderNote = editTextNote.text?.toString().orEmpty().trim()
+
+            when {
+                customerName.isBlank() -> {
+                    showToast(context, context.getString(R.string.str_checkout_name_required))
+                }
+
+                phoneNumber.length < 10 -> {
+                    showToast(context, context.getString(R.string.str_checkout_phone_required))
+                }
+
+                email.isBlank() -> {
+                    showToast(context, context.getString(R.string.str_checkout_email_required))
+                }
+
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    showToast(context, context.getString(R.string.str_checkout_email_invalid))
+                }
+
+                deliveryAddress.isBlank() -> {
+                    showToast(context, context.getString(R.string.str_checkout_address_required))
+                }
+
+                else -> {
+                    onConfirm(
+                        CheckoutDetails(
+                            customerName = customerName,
+                            phoneNumber = phoneNumber,
+                            email = email,
+                            deliveryAddress = deliveryAddress,
+                            orderNote = orderNote
+                        )
+                    )
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        dialog.setContentView(view)
+        dialog.show()
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.behavior.skipCollapsed = true
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        return dialog
+    }
+
 }

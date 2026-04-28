@@ -13,4 +13,23 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="toolbarStyle">@style/Widget.Grocio.Toolbar</item>
     </style>
+
+    <style name="ShapeAppearance.Grocio.ImageSurface" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/surface_corner_radius</item>
+    </style>
+
+    <style name="ThemeOverlay.Grocio.GlassBottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Grocio.GlassBottomSheet</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Grocio.GlassSheet</item>
+    </style>
+
+    <style name="Widget.Grocio.GlassBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Animation.Grocio.GlassSheet" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/glass_sheet_enter</item>
+        <item name="android:windowExitAnimation">@anim/glass_sheet_exit</item>
+    </style>
 </resources>
